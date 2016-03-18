@@ -1,0 +1,21 @@
+{
+  "name": "personalproject",
+  "version": "1.0.0",
+  "description": "Personal project for devMountain",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Mytrex inc.",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "cors": "^2.7.1",
+    "express": "^4.13.4",
+    "express-session": "^1.13.0",
+    "mssql": "^3.1.2",
+    "mysql": "^2.10.2",
+    "seriate": "^0.5.5"
+  }
+}
