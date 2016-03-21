@@ -1,0 +1,30 @@
+
+<md-input-container class="md-block">
+  <label>Search for a product...</label>
+  <input ng-model="searchText" class="searchText" type="text">
+</md-input-container>
+
+
+<md-content class="md-padding" layout-xs="column" layout="row">
+   <div flex-xs flex-gt-xs="50" layout="column">
+     <md-card ng-repeat="product in products | filter: searchText">
+       <md-card-title>
+           <md-card-title-text>
+             <span class="md-headline">{{product.ITEMNO}}</span>
+             <span class="md-subhead">{{product.DESC}}</span>
+           </md-card-title-text>
+           <md-card-title-media>
+             <div class="md-media-md card-media"><img class="card" src="{{product.image}}" alt="product image"></div>
+           </md-card-title-media>
+         </md-card-title>
+
+         <md-card-actions layout="row" layout-align="end center">
+           <md-input-container layout="row" layout-align="end center">
+             <label>Quantity...</label>
+             <input ng-model="quantity" class="quantity" type="text" ng-required="true">
+           </md-input-container>
+           <md-button class="md-raised md-primary" ng-click="cart(product.ITEMNO, product._id, quantity)">{{orderButton}}</md-button>
+         </md-card-actions>
+     </md-card>
+   </div>
+ </md-content>

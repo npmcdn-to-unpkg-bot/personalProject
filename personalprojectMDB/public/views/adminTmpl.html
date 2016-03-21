@@ -1,0 +1,45 @@
+<div ng-cloak>
+  <md-content>
+    <md-tabs md-dynamic-height md-border-bottom>
+      <md-tab label="Users">
+        <md-content class="md-padding">
+          <h1 class="md-display-2">All Users</h1>
+          <div ng-repeat="user in users">
+            <p>
+              {{user.lastName}}, {{user.firstName}} - {{user.email}}({{user.type}})
+            </p>
+          </div>
+        </md-content>
+      </md-tab>
+      <md-tab label="Create User">
+        <md-content class="md-padding">
+          <h1 class="md-display-1">Create User</h1>
+          <md-input-container md-no-float class="md-block">
+            <label>First name</label>
+            <input ng-model="user.firstName" type="text" required="true">
+          </md-input-container>
+          <md-input-container md-no-float class="md-block">
+            <label>Last name</label>
+            <input ng-model="user.lastName" type="text" required="true">
+          </md-input-container>
+          <md-input-container md-no-float class="md-block">
+            <label>Email</label>
+            <input ng-model="user.email" type="email" required="true">
+          </md-input-container>
+          <md-input-container md-no-float class="md-block">
+            <label>Password</label>
+            <input ng-model="user.password" type="password" required="true">
+          </md-input-container>
+          <div flex-xs flex="50">
+            <md-checkbox ng-model="adminCheck" aria-label="Checkbox 1">
+              Admin
+            </md-checkbox>
+          </div>
+          <md-button class="md-raised md-primary md-block" md-no-float ng-click="addUser(user.firstName, user.lastName, user.email, user.password)">
+            Submit
+          </md-button>
+        </md-content>
+      </md-tab>
+    </md-tabs>
+  </md-content>
+</div>

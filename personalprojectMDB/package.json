@@ -1,0 +1,25 @@
+{
+  "name": "personalproject",
+  "version": "1.0.0",
+  "description": "Personal Project for devMountain",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "cors": "^2.7.1",
+    "express": "^4.13.4",
+    "express-session": "^1.13.0",
+    "jwt-simple": "^0.5.0",
+    "moment": "^2.12.0",
+    "mongoose": "^4.4.7",
+    "passport-local": "^1.0.0",
+    "querystring": "^0.2.0",
+    "request": "^2.69.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC"
+}

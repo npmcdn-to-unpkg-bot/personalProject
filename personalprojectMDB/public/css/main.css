@@ -1,0 +1,22 @@
+html{
+	box-sizing: border-box;
+}
+*, *:before, *:after{
+	box-sizing: inherit;
+}
+body{
+  font-family: 'Source Sans Pro', sans-serif;
+  margin: 0;
+}
+
+.thumbnail{
+  border-bottom: #3F51B5 solid thin;
+  text-align: center;
+}
+.md-headline{
+  font-size: 15px;
+  display: block;
+}
+.md-subhead{
+  font-size: 12px;
+}
