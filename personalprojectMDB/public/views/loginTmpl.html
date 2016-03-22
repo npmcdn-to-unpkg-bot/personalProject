@@ -1,12 +1,12 @@
-<div layout="column" layout-padding ng-cloak>
+<div class="loginCard" layout="column" layout-padding ng-cloak>
   <md-content class="md-no-momentum">
     <md-input-container class="md-block">
       <input ng-model="user.email" type="email" placeholder="Email" ng-required="true">
     </md-input-container>
     <md-input-container class="md-icon-float md-block">
       <label>Password</label>
-      <input ng-model="user.name" type="password" ng-required="true">
+      <input ng-model="user.password" type="password" ng-required="true">
     </md-input-container>
-    <md-button class="md-raised md-primary" ng-click="check">Submit</md-button>
+    <md-button class="md-raised md-primary" ng-click="check(user.email, user.password)">Submit</md-button>
   </md-content>
 </div>

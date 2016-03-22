@@ -1,22 +1,25 @@
 <div ng-cloak>
-  <md-content>
+  <md-content class="adminTmple">
     <md-tabs md-dynamic-height md-border-bottom>
       <md-tab label="Users">
-        <md-content class="md-padding">
+        <md-content class="">
           <h1 class="md-display-2">All Users</h1>
           <div ng-repeat="user in users">
             <p>
-              {{user.lastName}}, {{user.firstName}} - {{user.email}}({{user.type}})
+              {{user.lastName}},
+              {{user.firstName}}
+              -
+              {{user.email}}({{user.type}})
             </p>
           </div>
         </md-content>
       </md-tab>
       <md-tab label="Create User">
-        <md-content class="md-padding">
+        <md-content class="createUser">
           <h1 class="md-display-1">Create User</h1>
           <md-input-container md-no-float class="md-block">
             <label>First name</label>
-            <input ng-model="user.firstName" type="text" required="true">
+            <input ng-model="user.firstName" type="text" required="true" md-autofocus>
           </md-input-container>
           <md-input-container md-no-float class="md-block">
             <label>Last name</label>
@@ -35,7 +38,7 @@
               Admin
             </md-checkbox>
           </div>
-          <md-button class="md-raised md-primary md-block" md-no-float ng-click="addUser(user.firstName, user.lastName, user.email, user.password)">
+          <md-button class="md-raised md-primary md-block userSubmitBtn" md-no-float ng-click="addUser(user.firstName, user.lastName, user.email, user.password)">
             Submit
           </md-button>
         </md-content>

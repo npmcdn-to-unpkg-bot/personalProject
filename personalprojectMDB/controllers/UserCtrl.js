@@ -2,6 +2,7 @@ var User = require("../schemas/userModel.js");
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var bcrypt = require("bcryptjs");
+var salt = bcrypt.genSaltSync(10);
 
 module.exports = {
   create: function(req, res, next) {
@@ -28,15 +29,19 @@ module.exports = {
       }
     });
   },
-  // show: function(req, res, next){
-  //   User.find(req.body.email, function(err, response){
-  //     User.comparePassword = function(password, done) {
-  //     bcrypt.compare(password, this.password, function(err, isMatch) {
-  //       done(err, isMatch);
-  //     });
-  //   })
-  //
-  // },
+  show: function(req, res, next){
+    User.findOne({"email": req.body.email}, function(err, response){
+      if(!err){
+        var password = req.body.password;
+        bcrypt.compare(password, response.password, function(err, resp) {
+          res.json(resp);
+        });
+      }
+      else{
+        res.json('No User Found');
+      }
+    })
+  },
 
 
   // show: function(req, res, next) {

@@ -20,3 +20,41 @@ body{
 .md-subhead{
   font-size: 12px;
 }
+.mytrexLogo{
+  height: 50px;
+}
+.loginCard{
+  width: 80%;
+  margin-left: 10%;
+  text-align: center;
+}
+md-content.layout-padding.flex {
+    height: 100%;
+}
+.userSubmitBtn{
+  margin-left: 40%;
+}
+@media (min-width: 420px) {
+  .loginCard{
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .createUser{
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+@media (min-width: 960px) {
+  .sideNav-header, .hamburger-menu, .three-dots{
+    display: none;
+  }
+  .mytrexLogo{
+    height: 100px;
+    margin-top: 40px;
+  }
+  .toobar-mytrex{
+    height: 105px;
+  }
+}

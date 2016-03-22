@@ -1,0 +1,40 @@
+<div layout="column" style="height:500px;" ng-cloak>
+  <section layout="row" flex>
+    <md-sidenav
+        class="md-sidenav-left"
+        md-component-id="left"
+        md-is-locked-open="$mdMedia('gt-md')"
+        md-disable-backdrop
+        md-whiteframe="4">
+      <md-toolbar class="md-theme-indigo sideNav-header">
+        <md-button ng-click="close()" class="md-icon-button" aria-label="Settings">
+          <i class="material-icons">menu</i>
+        </md-button>
+      </md-toolbar>
+      <md-content ng-model="sideNavContent" ng-hide="false" layout-padding>
+          <md-list ng-cloak>
+            <md-list-item ng-click="goTo('store'); close()">
+              <p>Store</p>
+              <i class="material-icons">shopping_cart</i>
+            </md-list-item>
+            <md-list-item ng-click="goTo('admin'); close()">
+              <p>Admin</p>
+              <i class="material-icons">supervisor_account</i>
+            </md-list-item>
+            <md-list-item ng-click="goTo(''); close();">
+              <p>Logout</p>
+              <i class="material-icons">exit_to_app</i>
+            </md-list-item>
+          </md-list>
+      </md-content>
+    </md-sidenav>
+    <md-content flex layout-padding>
+      <div ui-view></div>
+    </md-content>
+    <md-sidenav class="md-sidenav-right md-whiteframe-4dp" md-component-id="right">
+      <md-toolbar class="md-theme-light">
+        <h1 class="md-toolbar-tools">Sidenav Right</h1>
+      </md-toolbar>
+    </md-sidenav>
+  </section>
+</div>

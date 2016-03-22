@@ -1,5 +1,5 @@
-angular.module('mytrex').controller('productCtrl', function($scope, service, $mdDialog){
-
+angular.module('mytrex').controller('productCtrl', function($scope, service, $mdDialog, $location){
+  $location.path();
   $scope.orderButton = "Add to Cart";
 
 
@@ -49,8 +49,5 @@ angular.module('mytrex').controller('productCtrl', function($scope, service, $md
       this.quantity = '';
     }
   }
-
-
-
   $scope.getProducts();
 });

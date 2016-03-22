@@ -39,7 +39,7 @@ app.delete('/api/products/:id', MainCtrl.destroy);
 // //User Endpoints
 app.get('/api/user', UserCtrl.index);
 app.post('/api/user', UserCtrl.create);
-//app.get('/api/user/id', UserCtrl.show);
+app.post('/api/user/id', UserCtrl.show);
 
 
 

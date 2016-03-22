@@ -16,5 +16,11 @@ angular.module('mytrex')
     restrict: 'E',
     templateUrl: 'js/directives/footer.html'
   };
-
+})
+.directive('navSide', function() {
+  return{
+    restrict: 'E',
+    templateUrl: 'js/directives/sideNav.html',
+    controller: 'sideNavCtrl'
+  };
 });

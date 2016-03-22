@@ -1,5 +1,4 @@
 angular.module('mytrex').controller('adminCtrl', function($scope, adminService, $mdDialog){
-
   $scope.adminCheck = false;
 
   $scope.getUsers = function(){
