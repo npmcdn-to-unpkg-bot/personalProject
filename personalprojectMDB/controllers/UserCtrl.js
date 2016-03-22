@@ -3,6 +3,19 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var bcrypt = require("bcryptjs");
 var salt = bcrypt.genSaltSync(10);
+var jwt = require('jwt-simple');
+var moment = require('moment');
+
+var secret = require("../config/config.js")
+
+function createJWT(user) {
+  var payload = {
+    sub: user._id,
+    iat: moment().unix(),
+    exp: moment().add(14, 'days').unix()
+  };
+  return jwt.encode(payload, secret);
+}
 
 module.exports = {
   create: function(req, res, next) {
@@ -29,41 +42,22 @@ module.exports = {
       }
     });
   },
-  show: function(req, res, next){
-    User.findOne({"email": req.body.email}, function(err, response){
-      if(!err){
-        var password = req.body.password;
-        bcrypt.compare(password, response.password, function(err, resp) {
-          res.json(resp);
-        });
+  show: function(req, res) {
+  User.findOne({ "email": req.body.email }, function(err, user) {
+    if (!user) {
+      return res.status(401).send({ message: 'Invalid email and/or password' });
+    }
+    bcrypt.compare(req.body.password, user.password, function(err, isMatch) {
+      if (!isMatch) {
+        return res.status(401).send({ message: 'Invalid email and/or password' });
       }
-      else{
-        res.json('No User Found');
-      }
-    })
+        res.send({ token: createJWT(user) });
+      });
+    });
   },
-
-
-  // show: function(req, res, next) {
-  //   User
-  //   //console.log(req.params.user_id);
-  //   .findById(req.params.user_id)
-  //   .populate('cart.item')
-  //   .exec()
-  //   .then(function(results){
-  //     res.status(200).json(results);
-  //   }, function(err){
-  //     res.status(500).send(err);
-  //   })
-
-  // User.findById(req.params.user_id).exec(function(err, response){
-  //   //console.log(response)
-  //   if(err) {
-  //     res.status(500).json(err);
-  //   } else {
-  //     res.json(response);
-  //   }
-  // });
-  //},
-
-};
+  getme: function(req, res) {
+  User.findById(req.user, function(err, user) {
+      res.send(user);
+    });
+  }
+}
