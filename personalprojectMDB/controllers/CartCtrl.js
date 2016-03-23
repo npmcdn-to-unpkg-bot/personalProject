@@ -5,8 +5,7 @@ var Schema = mongoose.Schema;
 
 module.exports = {
    create: function(req, res, next){
-
-     User.findByIdAndUpdate(req.params.user_id, {$push: {cart: req.body}}, function(err, response){
+     User.findByIdAndUpdate(req.user, {$push: {cart: req.body}}, function(err, response){
        if(err) {
          res.status(500).json(err);
        } else {
@@ -17,7 +16,7 @@ module.exports = {
   },
   update: function(req, res, next) {
 
-    User.findById(req.params.user_id, function(err, resp) {
+    User.findById(req.user, function(err, resp) {
       if (err) {
         res.status(500).send(err)
       }

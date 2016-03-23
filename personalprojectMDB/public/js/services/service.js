@@ -7,14 +7,24 @@ angular.module('mytrex').service('service', function($http){
       return response.data;
     });
   };
-  // this.addCart = function(item, id, quantity) {
-  //   console.log(item, id, quantity);
-  // //   return $http({
-  // //     method: 'POST',
-  // //     url: 'http://localhost:4545/api/products/cart'
-  // //     data:
-  // //   }).then(function(response) {
-  // //     return response.data;
-  // //   });
-  // };
+  this.addCart = function(productObj) {
+    //console.log(productObj._id + "Service");
+    return $http({
+      method: 'POST',
+      url: 'http://localhost:4545/api/cart/',
+      data: productObj
+    }).then(function(response) {
+      return response.data;
+    });
+  };
+  this.remove = function(productObj) {
+    //console.log(productObj._id + "Service");
+    return $http({
+      method: 'PUT',
+      url: 'http://localhost:4545/api/cart/',
+      data: productObj
+    }).then(function(response) {
+      return response.data;
+    });
+  };
 });

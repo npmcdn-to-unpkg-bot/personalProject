@@ -1,4 +1,4 @@
-angular.module('mytrex').controller('sideNavCtrl', function($scope, $timeout, $mdSidenav, $log, $location){
+angular.module('mytrex').controller('sideNavCtrl', function($scope, $timeout, $mdSidenav, $log, $location, $auth, $mdDialog){
       $scope.toggleLeft = buildDelayedToggler('left');
       $scope.currentPath = $location.path();
       /**
@@ -53,4 +53,21 @@ angular.module('mytrex').controller('sideNavCtrl', function($scope, $timeout, $m
               $scope.hamburgerMenu = false;
           }
       }
+      $scope.logout = function(){
+      if (!$auth.isAuthenticated()) { return; }
+      $auth.logout()
+        .then(function() {
+          $mdDialog.show(
+            $mdDialog.alert()
+              .clickOutsideToClose(true)
+              .title('')
+              .textContent('You have been logged out')
+              .ariaLabel('Label')
+              .ok('close')
+              .openFrom({top: -50, width: 100, height: 80})
+              .closeTo({left: 1500})
+            );
+          $location.path('/');
+        });
+    }
     })

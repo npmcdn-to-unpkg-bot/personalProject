@@ -11,8 +11,9 @@ var secret = require("../config/config.js")
 function createJWT(user) {
   var payload = {
     sub: user._id,
+    role: user.type,
     iat: moment().unix(),
-    exp: moment().add(14, 'days').unix()
+    exp: moment().add(90, 'm').unix()
   };
   return jwt.encode(payload, secret);
 }

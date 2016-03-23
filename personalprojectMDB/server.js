@@ -33,6 +33,7 @@ mongoose.connection.once("open", function(){
 
 var port = 4545;
 
+
 function ensureAuthenticated(req, res, next) {
   if (!req.header('Authorization')) {
     return res.status(401).send({ message: 'Please make sure your request has an Authorization header' });
@@ -50,6 +51,7 @@ function ensureAuthenticated(req, res, next) {
   if (payload.exp <= moment().unix()) {
     return res.status(401).send({ message: 'Token has expired' });
   }
+  req.type = payload.type;
   req.user = payload.sub;
   next();
 }
@@ -65,8 +67,8 @@ app.delete('/api/products/:id', ensureAuthenticated, MainCtrl.destroy);
 //app.post('/api/order/:user_id', OrderCtrl.create);
 //app.get('/api/order/', OrderCtrl.index);
 //Cart Endpoints
-// app.post('/api/cart/:user_id', CartCtrl.create);
-// app.put('/api/cart/:user_id', CartCtrl.update);
+app.post('/api/cart/', ensureAuthenticated, CartCtrl.create);
+app.put('/api/cart/', ensureAuthenticated, CartCtrl.update);
 // //User Endpoints
 app.get('/api/user', ensureAuthenticated, UserCtrl.index);
 app.post('/api/user', ensureAuthenticated, UserCtrl.create);

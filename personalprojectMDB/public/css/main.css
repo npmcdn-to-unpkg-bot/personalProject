@@ -14,8 +14,11 @@ body{
   text-align: center;
 }
 .md-headline{
-  font-size: 15px;
+  font-size: 20px;
   display: block;
+  background-color: #3F51B5;
+  color: white;
+  border-radius: 4px;
 }
 .md-subhead{
   font-size: 12px;
@@ -33,6 +36,15 @@ md-content.layout-padding.flex {
 }
 .userSubmitBtn{
   margin-left: 40%;
+}
+.quantity{
+  width: 100px;
+  /*margin-right: 40px;*/
+  margin-left: 0;
+  margin-right: auto;
+}
+.center{
+  text-align: center;
 }
 @media (min-width: 420px) {
   .loginCard{
