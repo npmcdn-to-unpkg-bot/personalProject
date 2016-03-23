@@ -1,4 +1,4 @@
-angular.module('mytrex').controller('productCtrl', function($scope, service, $mdDialog, $location){
+angular.module('mytrex').controller('productCtrl', function($scope, service, $mdDialog, $location, $mdMedia){
 
   $location.path();
   $scope.orderButton = "Add to Cart";
@@ -9,6 +9,7 @@ angular.module('mytrex').controller('productCtrl', function($scope, service, $md
       $scope.products = response;
     });
   };
+
 
   $scope.cart = function(item, id, quantity){
     var productObj = {
@@ -40,7 +41,7 @@ angular.module('mytrex').controller('productCtrl', function($scope, service, $md
               .ariaLabel('Label')
               .ok('close')
               .openFrom({top: -50, width: 30, height: 80
-              }).closeTo({left: 1500})
+              }).closeTo(angular.element(document.querySelector('#cartIcon')))
           )
         });
         this.orderButton = "Remove";
@@ -63,16 +64,57 @@ angular.module('mytrex').controller('productCtrl', function($scope, service, $md
           $mdDialog.alert()
             .clickOutsideToClose(true)
             .title('Mytrex inc')
-            .textContent(response.data)
+            .textContent("Removed "+qty+" of "+item+" from cart")
             .ariaLabel('Label')
             .ok('close')
-            .openFrom({top: -50, width: 30, height: 80
-            }).closeTo({left: 1500})
+            .openFrom(angular.element(document.querySelector('#cartIcon'))).closeTo({left: 1500})
         )
       });
       this.orderButton = "Add to Cart";
       this.quantity = '';
     }
   }
+
+  $scope.showConfirm = function(ev) {
+    // Appending dialog to document.body to cover sidenav in docs app
+    var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
+    $mdDialog.show({
+      controller: DialogController,
+      templateUrl: './views/cart.dialog.html',
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      clickOutsideToClose:true,
+      fullscreen: useFullScreen
+    }).then(function() {
+      $scope.status = 'You decided to get rid of your debt.';
+    }, function() {
+      $scope.status = 'You decided to keep your debt.';
+    });
+  };
+
   $scope.getProducts();
 });
+function DialogController($scope, $mdDialog, service, $location) {
+  $scope.getUserCart = function(){
+    service.getUserCart().then(function(response){
+      $scope.userCart = response;
+    })
+  };
+  $scope.hide = function() {
+    $mdDialog.hide();
+  };
+  $scope.cancel = function() {
+    $mdDialog.cancel();
+  };
+  $scope.answer = function(answer) {
+    if(answer === 'shop'){
+      $mdDialog.hide(answer);
+    }
+    else{
+      $mdDialog.hide(answer);
+      $location.path('/cart')
+    }
+  };
+
+  $scope.getUserCart();
+}

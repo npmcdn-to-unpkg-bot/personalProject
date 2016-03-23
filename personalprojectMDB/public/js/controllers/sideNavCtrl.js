@@ -1,5 +1,9 @@
 angular.module('mytrex').controller('sideNavCtrl', function($scope, $timeout, $mdSidenav, $log, $location, $auth, $mdDialog){
       $scope.toggleLeft = buildDelayedToggler('left');
+      $scope.toggleRight = buildToggler('right');
+       $scope.isOpenRight = function(){
+         return $mdSidenav('right').isOpen();
+       };
       $scope.currentPath = $location.path();
       /**
        * Supplies a function that will continue to operate until the
@@ -46,6 +50,12 @@ angular.module('mytrex').controller('sideNavCtrl', function($scope, $timeout, $m
             // $log.debug("close LEFT is done");
           });
       };
+      $scope.closeR = function () {
+      $mdSidenav('right').close()
+        .then(function () {
+          $log.debug("close RIGHT is done");
+        });
+    };
 
       $scope.goTo = function(location){
           $location.url('/'+location);
@@ -70,4 +80,7 @@ angular.module('mytrex').controller('sideNavCtrl', function($scope, $timeout, $m
           $location.path('/');
         });
     }
-    })
+
+    $scope.crtQty = "0";
+
+})

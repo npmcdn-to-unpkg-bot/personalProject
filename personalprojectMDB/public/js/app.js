@@ -26,6 +26,13 @@ angular.module('mytrex', ['ngMaterial', 'ngResource', 'ngMessages', 'ngAnimate',
           resolve: {
            loginRequired: loginRequired
          }
+       }).state('cart', {
+          url: '/cart',
+          templateUrl: 'views/cartTmpl.html',
+          controller: 'cartCtrl',
+          resolve: {
+           loginRequired: loginRequired
+         }
         })
         // .state('logout', {
         //   url: '/logout',

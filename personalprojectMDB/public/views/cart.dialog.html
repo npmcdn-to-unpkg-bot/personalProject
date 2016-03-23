@@ -1,0 +1,30 @@
+<md-dialog aria-label="Mango (Fruit)"  ng-cloak>
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Cart Preview</h2>
+        <span flex></span>
+        <md-button class="md-icon-button">
+          <i class="material-icons">edit</i>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <div>
+          <div ng-repeat="item in userCart">
+            {{item.item}} ({{item.quantity}})
+          </div>
+        </div>
+      </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+      <md-button class="md-raised" ng-click="answer('shop')">
+       Keep Shopping
+      </md-button>
+      <md-button class="md-raised md-primary" ng-click="answer('checkout')" style="margin-right:20px;">
+        Checkout
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

@@ -957,7 +957,13 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' && module.ex
           },
           responseError: function(response) {
             return $q.reject(response);
-          }
+          },
+          response:function(response){
+           if(response.headers().nt){
+             storage.set('mytrex_token', response.headers().nt);
+           }
+           return response;
+         }
         };
       }])
     .config(['$httpProvider', function($httpProvider) {

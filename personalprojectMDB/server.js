@@ -26,13 +26,17 @@ mongoose.connect('mongodb://localhost/mytrex');
 var app = express();
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors({exposedHeaders: "nt"}));
 mongoose.connection.once("open", function(){
   console.log("Connected to MongoDB");
 });
 
 var port = 4545;
 
+function updateJWT(payload) {
+    payload.exp = moment().add(30, 'm').unix();
+    return jwt.encode(payload, secret);
+}
 
 function ensureAuthenticated(req, res, next) {
   if (!req.header('Authorization')) {
@@ -42,17 +46,19 @@ function ensureAuthenticated(req, res, next) {
 
   var payload = null;
   try {
-    payload = jwt.decode(token, secret);
+    payload = jwt.decode(token, secret, "HS256");
   }
   catch (err) {
     return res.status(401).send({ message: err.message });
   }
 
-  if (payload.exp <= moment().unix()) {
+  if (payload.exp <= moment().unix() || ((moment().format('X') - payload.iat)/60) > 1440) {
     return res.status(401).send({ message: 'Token has expired' });
   }
+
   req.type = payload.type;
   req.user = payload.sub;
+  res.setHeader("nt", updateJWT(payload));
   next();
 }
 
@@ -69,6 +75,7 @@ app.delete('/api/products/:id', ensureAuthenticated, MainCtrl.destroy);
 //Cart Endpoints
 app.post('/api/cart/', ensureAuthenticated, CartCtrl.create);
 app.put('/api/cart/', ensureAuthenticated, CartCtrl.update);
+app.get('/api/cart/', ensureAuthenticated, CartCtrl.index);
 // //User Endpoints
 app.get('/api/user', ensureAuthenticated, UserCtrl.index);
 app.post('/api/user', ensureAuthenticated, UserCtrl.create);

@@ -8,7 +8,19 @@ body{
   font-family: 'Source Sans Pro', sans-serif;
   margin: 0;
 }
-
+#cartIcon{
+  position: fixed;
+  top: 11px;
+  right: 8px;
+  z-index: 5;
+  color: white;
+  padding: 5px;
+  border-radius: 3px;
+  background-color: #3F51B5;
+}
+.blue{
+  color:#3F51B5; 
+}
 .thumbnail{
   border-bottom: #3F51B5 solid thin;
   text-align: center;
@@ -17,7 +29,7 @@ body{
   font-size: 20px;
   display: block;
   background-color: #3F51B5;
-  color: white;
+  color: #E6E8F6;
   border-radius: 4px;
 }
 .md-subhead{

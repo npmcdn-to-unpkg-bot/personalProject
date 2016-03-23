@@ -7,6 +7,14 @@ angular.module('mytrex').service('service', function($http){
       return response.data;
     });
   };
+  this.getUserCart = function() {
+    return $http({
+      method: 'GET',
+      url: 'http://localhost:4545/api/cart/'
+    }).then(function(response) {
+      return response.data;
+    });
+  };
   this.addCart = function(productObj) {
     //console.log(productObj._id + "Service");
     return $http({

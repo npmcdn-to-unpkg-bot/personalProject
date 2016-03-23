@@ -13,7 +13,7 @@ function createJWT(user) {
     sub: user._id,
     role: user.type,
     iat: moment().unix(),
-    exp: moment().add(90, 'm').unix()
+    exp: moment().add(30, 'm').unix()
   };
   return jwt.encode(payload, secret);
 }
