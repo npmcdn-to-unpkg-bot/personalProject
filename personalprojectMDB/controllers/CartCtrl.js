@@ -3,6 +3,16 @@ var User = require("../schemas/userModel.js");
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+function saveUser(userToSave, req, res) {
+  userToSave.save(function(err, result) {
+    if (err) {
+      res.status(500).send(err)
+    } else {
+      res.send(result)
+    }
+  })
+};
+
 module.exports = {
   create: function(req, res, next) {
     User.findById(req.user, function(err, resp) {
@@ -54,16 +64,6 @@ module.exports = {
       }
       saveUser(myUser, req, res);
     })
-
-    function saveUser(userToSave, req, res) {
-      userToSave.save(function(err, result) {
-        if (err) {
-          res.status(500).send(err)
-        } else {
-          res.send(result)
-        }
-      })
-    };
   },
 
   index: function(req, res, next){
@@ -72,7 +72,35 @@ module.exports = {
         res.status(500).send(err);
       }
       var myUser = resp;
-      res.send(myUser.cart);
+      var foundItem = -1;
+      //console.log(myUser);
+      myUser.cart.forEach(function(cartItem, index) {
+          foundItem ++
+      })
+      if (foundItem === -1) {
+        res.status(204).send("No items in cart");
+      }
+      else if(foundItem !== -1){
+        res.status(200).send(myUser.cart);
+      }
+    })
+  },
+  destroy: function(req, res, next){
+    User.findById(req.user, function(err, resp){
+      if(err){
+        res.status(500).send(err);
+      }
+      var myUser = resp;
+      var item = req.params.id;
+      //console.log(myUser);
+      myUser.cart.forEach(function(cartItem, index) {
+        if (cartItem._id.toString() === item) {
+          myUser.cart.splice(item, 1);
+        }
+      })
+      myUser.save(function(err, result) {
+        err ? res.status(500).send(err) : res.send(result);
+      })
     })
   }
 };

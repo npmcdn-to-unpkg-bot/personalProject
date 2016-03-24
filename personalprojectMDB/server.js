@@ -76,6 +76,7 @@ app.delete('/api/products/:id', ensureAuthenticated, MainCtrl.destroy);
 app.post('/api/cart/', ensureAuthenticated, CartCtrl.create);
 app.put('/api/cart/', ensureAuthenticated, CartCtrl.update);
 app.get('/api/cart/', ensureAuthenticated, CartCtrl.index);
+app.delete('/api/cart/:id', ensureAuthenticated, CartCtrl.destroy);
 // //User Endpoints
 app.get('/api/user', ensureAuthenticated, UserCtrl.index);
 app.post('/api/user', ensureAuthenticated, UserCtrl.create);

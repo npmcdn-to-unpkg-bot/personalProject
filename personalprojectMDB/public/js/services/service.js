@@ -12,6 +12,9 @@ angular.module('mytrex').service('service', function($http){
       method: 'GET',
       url: 'http://localhost:4545/api/cart/'
     }).then(function(response) {
+      if(response.status === 204){
+        return response.status;
+      }
       return response.data;
     });
   };
@@ -35,4 +38,12 @@ angular.module('mytrex').service('service', function($http){
       return response.data;
     });
   };
+  this.removeItem = function(productObj){
+    return $http({
+      method: 'DELETE',
+      url: 'http://localhost:4545/api/cart/'+productObj
+    }).then(function(response) {
+      return response.data;
+    });
+  }
 });
