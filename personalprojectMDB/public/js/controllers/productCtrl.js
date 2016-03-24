@@ -44,7 +44,8 @@ angular.module('mytrex').controller('productCtrl', function($scope, service, $md
               }).closeTo(angular.element(document.querySelector('#cartIcon')))
           )
         });
-        this.orderButton = "Remove";
+        //this.orderButton = "Remove";
+        this.quantity = "";
       }
 
     }
@@ -115,6 +116,9 @@ function DialogController($scope, $mdDialog, service, $location) {
       $location.path('/cart')
     }
   };
-
+  $scope.editCart = function(){
+    $mdDialog.hide();
+    $location.path('/cart')
+  }
   $scope.getUserCart();
 }

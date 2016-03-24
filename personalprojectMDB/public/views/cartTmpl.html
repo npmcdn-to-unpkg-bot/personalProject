@@ -1,1 +1,24 @@
-This is the cart!
+<div ng-cloak >
+  <md-content class="md-padding" layout-xs="column" layout="row">
+    <div flex-xs flex-gt-xs="50" layout="column">
+      <md-card ng-repeat="item in itemsInCart">
+        <md-content layout-gt-sm="row" layout-padding>
+        <div>
+          <md-input-container>
+            <label>Item</label>
+            <input ng-model="item.item" ng-readonly="true">
+          </md-input-container>
+          <md-input-container>
+            <label>Quantity</label>
+            <input ng-model="item.quantity" ng-readonly="true">
+          </md-input-container>
+        </div>
+      </md-content>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button ng-click="removeItem(item.quantity, item._id, item.item)">Remove</md-button>
+          <md-button ng-model="saveEdit" ng-click="editQty()">Edit Qty</md-button>
+        </md-card-actions>
+      </md-card>
+    </div>
+  </md-content>
+</div>

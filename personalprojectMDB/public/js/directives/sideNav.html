@@ -18,7 +18,7 @@
               <i class="material-icons blue">shopping_basket</i>
             </md-list-item>
             <md-list-item ng-click="goTo('cart'); close()">
-              <p>Cart({{crtQty}})</p>
+              <p>Cart</p>
               <i class="material-icons blue">shopping_cart</i>
             </md-list-item>
             <md-list-item ng-click="goTo('admin'); close()">
@@ -35,27 +35,5 @@
     <md-content flex layout-padding>
       <div ui-view></div>
     </md-content>
-    <md-sidenav class="md-sidenav-right md-whiteframe-4dp" md-component-id="right">
-      <md-toolbar class="md-theme-light">
-        <h1 class="md-toolbar-tools">Sidenav Right</h1>
-      </md-toolbar>
-    </md-sidenav>
-    <md-sidenav class="md-sidenav-right md-whiteframe-4dp" md-component-id="right">
-      <md-toolbar class="md-theme-light">
-        <h1 class="md-toolbar-tools">Sidenav Right</h1>
-      </md-toolbar>
-      <md-content layout-padding>
-        <form>
-          <md-input-container>
-            <label for="testInput">Test input</label>
-            <input type="text" id="testInput"
-                   ng-model="data" md-autofocus>
-          </md-input-container>
-        </form>
-        <md-button ng-click="close()" class="md-primary">
-          Close Sidenav Right
-        </md-button>
-      </md-content>
-    </md-sidenav>
   </section>
 </div>

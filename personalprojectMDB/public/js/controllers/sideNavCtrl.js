@@ -5,10 +5,7 @@ angular.module('mytrex').controller('sideNavCtrl', function($scope, $timeout, $m
          return $mdSidenav('right').isOpen();
        };
       $scope.currentPath = $location.path();
-      /**
-       * Supplies a function that will continue to operate until the
-       * time is up.
-       */
+
       function debounce(func, wait, context) {
         var timer;
         return function debounced() {
@@ -21,10 +18,7 @@ angular.module('mytrex').controller('sideNavCtrl', function($scope, $timeout, $m
           }, wait || 10);
         };
       }
-      /**
-       * Build handler to open/close a SideNav; when animation finishes
-       * report completion in console
-       */
+
       function buildDelayedToggler(navID) {
         return debounce(function() {
           $mdSidenav(navID)
@@ -43,7 +37,6 @@ angular.module('mytrex').controller('sideNavCtrl', function($scope, $timeout, $m
             });
         }
       }
-
       $scope.close = function () {
         $mdSidenav('left').close()
           .then(function () {
@@ -55,8 +48,7 @@ angular.module('mytrex').controller('sideNavCtrl', function($scope, $timeout, $m
         .then(function () {
           $log.debug("close RIGHT is done");
         });
-    };
-
+      };
       $scope.goTo = function(location){
           $location.url('/'+location);
           if(location === ''){
@@ -80,7 +72,6 @@ angular.module('mytrex').controller('sideNavCtrl', function($scope, $timeout, $m
           $location.path('/');
         });
     }
-
-    $scope.crtQty = "0";
+    
 
 })
