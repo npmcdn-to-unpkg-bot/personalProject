@@ -18,8 +18,33 @@ body{
   border-radius: 3px;
   background-color: #3F51B5;
 }
+a.md-button.md-default-theme.md-warn.md-raised, a.md-button.md-warn.md-raised, a.md-button.md-default-theme.md-warn.md-fab, a.md-button.md-warn.md-fab, .md-button.md-default-theme.md-warn.md-raised, .md-button.md-warn.md-raised, .md-button.md-default-theme.md-warn.md-fab, .md-button.md-warn.md-fab {
+    color: rgb(255,255,255);
+    background-color: red;
+  }
+  .listdemoListControls {
+    /* Add some right padding so that the text doesn't overlap the buttons */ }
+    .listdemoListControls md-divider {
+      margin-top: 0;
+      margin-bottom: 0; }
+    .listdemoListControls md-list {
+      padding-top: 0; }
+    .listdemoListControls md-list-item > p,
+    .listdemoListControls md-list-item > ._md-list-item-inner > p,
+    .listdemoListControls md-list-item ._md-list-item-inner > p,
+    .listdemoListControls md-list-item ._md-list-item-inner > ._md-list-item-inner > p {
+      -webkit-user-select: none;
+      /* Chrome all / Safari all */
+      -moz-user-select: none;
+      /* Firefox all */
+      -ms-user-select: none;
+      /* IE 10+ */
+      user-select: none;
+      /* Likely future */ }
+    .listdemoListControls .secondary-button-padding p {
+      padding-right: 100px; }
 .blue{
-  color:#3F51B5; 
+  color:#3F51B5;
 }
 .thumbnail{
   border-bottom: #3F51B5 solid thin;

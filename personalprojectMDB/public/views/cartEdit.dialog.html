@@ -5,27 +5,28 @@
         <h2>Edit Quantity</h2>
         <span flex></span>
         <md-button class="md-icon-button" ng-click="cancel()">
-          <i class="material-icons" aria-label="Close dialog">ic_close_24px</i>
+          <i class="material-icons" aria-label="Close dialog">ic_close</i>
         </md-button>
       </div>
     </md-toolbar>
-    <md-dialog-content>
-      <div class="md-dialog-content">
+    <md-dialog-content class="md-dialog-content">
         <md-content layout-gt-sm="row" layout-padding>
-          <div>
+
+            <h4>{{part}}</h4>
+            <h5>Quantity: {{oldQty}}</h5>
+            <span hidden="true">{{id}}</span>
             <md-input-container>
-                <label>New Quantity</label>
+                <label ng-model="qty">New Quantity:</label>
                 <input type="text" ng-model="newQuantity" required>
             </md-input-container>
-          </div>
+
       </md-content>
-      </div>
     </md-dialog-content>
-    <md-dialog-actions layout="row">
-      <md-button ng-click="answer('cancel')">
+    <md-dialog-actions layout="row" layout-align="center">
+      <md-button class="md-raised" ng-click="answer('cancel')">
        cancel
       </md-button>
-      <md-button ng-model="saveButton" ng-disabled="!newQuantity" ng-click="saveNewQty(newQuantity); answer('save');" style="margin-right:20px;">
+      <md-button class="md-raised md-primary" ng-model="saveButton" ng-disabled="!newQuantity" ng-click="saveNewQty(newQuantity, id); answer('save');">
         Save
       </md-button>
     </md-dialog-actions>

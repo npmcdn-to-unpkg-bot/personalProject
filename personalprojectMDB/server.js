@@ -13,7 +13,7 @@ var mongoose = require('mongoose');
 var request = require('request');
 
 var MainCtrl = require("./controllers/MainCtrl.js");
-//var OrderCtrl = require("./controllers/OrderCtrl.js");
+var OrderCtrl = require("./controllers/OrderCtrl.js");
 var CartCtrl = require("./controllers/CartCtrl.js");
 var UserCtrl = require("./controllers/UserCtrl.js");
 var Product = require("./schemas/product.js");
@@ -70,8 +70,8 @@ app.put('/api/products/:id', ensureAuthenticated, MainCtrl.update);
 app.delete('/api/products/:id', ensureAuthenticated, MainCtrl.destroy);
 
 //order Endpoints
-//app.post('/api/order/:user_id', OrderCtrl.create);
-//app.get('/api/order/', OrderCtrl.index);
+app.post('/api/order/', ensureAuthenticated, OrderCtrl.create);
+app.get('/api/order/', ensureAuthenticated, OrderCtrl.index);
 //Cart Endpoints
 app.post('/api/cart/', ensureAuthenticated, CartCtrl.create);
 app.put('/api/cart/', ensureAuthenticated, CartCtrl.update);

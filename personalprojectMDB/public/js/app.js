@@ -34,11 +34,22 @@ angular.module('mytrex', ['ngMaterial', 'ngResource', 'ngMessages', 'ngAnimate',
            loginRequired: loginRequired
          }
         })
-        // .state('logout', {
-        //   url: '/logout',
-        //   template: null,
-        //   controller: 'LogoutCtrl'
-        // })
+        .state('orders', {
+           url: '/orders',
+           templateUrl: 'views/ordersTmpl.html',
+           controller: 'cartCtrl',
+           resolve: {
+            loginRequired: loginRequired
+          }
+         })
+        .state('checkout', {
+          url: '/checkout',
+          templateUrl: 'views/submitOrder.html',
+          controller: 'cartCtrl',
+          resolve: {
+           loginRequired: loginRequired
+         }
+        })
       $urlRouterProvider
           .otherwise('/');
           function skipIfLoggedIn($q, $auth) {

@@ -15,10 +15,14 @@
           <md-list ng-cloak>
             <md-list-item ng-click="goTo('store'); close()">
               <p>Store</p>
-              <i class="material-icons blue">shopping_basket</i>
+              <i class="material-icons blue">store</i>
+            </md-list-item>
+            <md-list-item ng-click="goTo('orders'); close()">
+              <p>Your Orders</p>
+              <i class="material-icons blue">receipt</i>
             </md-list-item>
             <md-list-item ng-click="goTo('cart'); close()">
-              <p>Cart</p>
+              <p>Your Cart</p>
               <i class="material-icons blue">shopping_cart</i>
             </md-list-item>
             <md-list-item ng-click="goTo('admin'); close()">

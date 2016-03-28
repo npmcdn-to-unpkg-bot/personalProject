@@ -3,25 +3,29 @@
     <div ng-show="noCart">
       "You have no items in your cart"
     </div>
+    <md-button ng-show="!noCart" class="md-raised md-primary" ng-click="submit()">Proceed to Checkout</md-button>
+    <md-button ng-show="!noCart" class="md-raised" ng-click="keepShopping()">Keep Shopping</md-button>
     <div flex-xs flex-gt-xs="50" layout="column">
       <md-card ng-repeat="item in itemsInCart">
         <md-content layout-gt-sm="row" layout-padding>
         <div>
-          <md-input-container>
+          <h4>{{item.item}}</h4>
+          <!-- <md-input-container>
             <label>Item</label>
             <input ng-model="item.item" ng-readonly="true">
-          </md-input-container>
+          </md-input-container> -->
           <md-input-container>
             <label>Quantity</label>
             <input ng-model="item.quantity" ng-readonly="true">
           </md-input-container>
         </div>
       </md-content>
-        <md-card-actions layout="row" layout-align="end center">
-          <md-button ng-click="removeItem(item.quantity, item._id, item.item)">Remove</md-button>
-          <md-button ng-model="saveEdit" ng-click="showAdvanced($event)">Edit Qty</md-button>
+        <md-card-actions layout="row" layout-align="center">
+          <md-button class="md-raised md-warn" ng-click="removeItem(item.quantity, item._id, item.item)">Remove</md-button>
+          <md-button class="md-raised" ng-model="saveEdit" ng-click="showAdvanced($event, item.item, item._id, item.quantity)">Edit Qty</md-button>
         </md-card-actions>
       </md-card>
     </div>
+    <md-button ng-show="!noCart" class="md-raised md-primary" ng-click="submit()">Proceed to Checkout</md-button>
   </md-content>
 </div>

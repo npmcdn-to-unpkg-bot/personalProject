@@ -19,7 +19,6 @@ angular.module('mytrex').service('service', function($http){
     });
   };
   this.addCart = function(productObj) {
-    //console.log(productObj._id + "Service");
     return $http({
       method: 'POST',
       url: 'http://localhost:4545/api/cart/',
@@ -29,7 +28,6 @@ angular.module('mytrex').service('service', function($http){
     });
   };
   this.remove = function(productObj) {
-    //console.log(productObj._id + "Service");
     return $http({
       method: 'PUT',
       url: 'http://localhost:4545/api/cart/',
@@ -45,5 +43,21 @@ angular.module('mytrex').service('service', function($http){
     }).then(function(response) {
       return response.data;
     });
-  }
+  };
+  this.submitOrder = function(){
+    return $http({
+      method: 'POST',
+      url: 'http://localhost:4545/api/order'
+    }).then(function(response){
+      return response.data;
+    })
+  };
+  this.getOrders = function(){
+    return $http({
+      method: 'GET',
+      url: 'http://localhost:4545/api/order'
+    }).then(function(response){
+      return response.data;
+    })
+  };
 });

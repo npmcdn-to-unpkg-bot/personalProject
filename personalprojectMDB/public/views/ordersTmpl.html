@@ -1,0 +1,16 @@
+<div ng-cloak layout-gt-sm="row" layout="column">
+  <div flex-gt-sm="50" flex>
+    <md-content>
+      <md-list flex ng-repeat="order in orders">
+
+        <md-header class="md-no-sticky" >Order ID: {{order._id}}</md-header>
+        <md-list-item class="md-2-line" ng-repeat="product in order.products">
+          <div class="md-list-item-text">
+            <h5>({{product.quantity}}) {{product.item}}</h5>
+          </div>
+        </md-list-item>
+        <md-divider ></md-divider>
+      </md-list>
+    </md-content>
+  </div>
+</div>

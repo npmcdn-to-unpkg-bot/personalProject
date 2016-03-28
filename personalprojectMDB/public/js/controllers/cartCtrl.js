@@ -28,47 +28,88 @@ angular.module('mytrex').controller('cartCtrl', function($scope, $timeout, $mdSi
         );
     })
   }
-  $scope.showAdvanced = function(ev) {
-    // var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
+  $scope.showAdvanced = function(ev, part, id, qty) {
+    // console.log(qty)
+     var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
     $mdDialog.show({
       controller: DialogController,
       templateUrl: '../views/cartEdit.dialog.html',
       parent: angular.element(document.body),
       targetEvent: ev,
-      clickOutsideToClose:true
+      clickOutsideToClose:true,
+      locals:{
+        oldQty: qty,
+        part: part,
+        id: id
+      }
     })
     .then(function(answer) {
-      $scope.status = 'You said the information was "' + answer + '".';
+      $scope.getUserCart();
     }, function() {
       $scope.status = 'You cancelled the dialog.';
     });
+    function DialogController($scope, $mdDialog, oldQty, part, id) {
+        $scope.oldQty = oldQty;
+        $scope.part = part;
+        $scope.id = id;
+        $scope.hide = function() {
+          $mdDialog.hide();
+        };
+        $scope.cancel = function() {
+          $mdDialog.cancel();
+        };
+        $scope.answer = function(answer) {
+          if(answer === 'cancel'){
+            $mdDialog.hide(answer);
+          }
+          else if(answer === 'save'){
+            $mdDialog.hide(answer);
+          }
+        };
+        $scope.saveNewQty = function(newQty, Id){
+          productObj = {
+            "_id" : Id,
+            "quantity" : newQty,
+          }
+          service.remove(productObj).then(function(response){
+
+          })
+        }
+      }
+
     $scope.$watch(function() {
       return $mdMedia('xs') || $mdMedia('sm');
     }, function(wantsFullScreen) {
       $scope.customFullscreen = (wantsFullScreen === true);
     });
   };
-  $scope.saveNewQty = function(newQty){
-    console.log(newQty)
-    //service.saveNewQty($scope.newQuantity).then
-  }
-  $scope.editQty = function(){
-  }
 
-  $scope.hide = function() {
-    $mdDialog.hide();
-  };
-  $scope.cancel = function() {
-    $mdDialog.cancel();
-  };
-  $scope.answer = function(answer) {
-    if(answer === 'cancel'){
-      $mdDialog.hide(answer);
-    }
-    else if(answer === 'save'){
-      $mdDialog.hide(answer);
-    }
-  };
-
+  $scope.submit = function(){
+    $location.path('/checkout')
+  }
+  $scope.keepShopping = function(){
+    $location.path('/store')
+  }
+  $scope.submitOrder = function(){
+    service.submitOrder().then(function(response){
+      $mdDialog.show(
+        $mdDialog.alert()
+          .clickOutsideToClose(true)
+          .title('Mytrex inc')
+          .textContent("Your order has been submitted")
+          .ariaLabel('Label')
+          .ok('close')
+          .openFrom({top: -50, width: 100, height: 80})
+          .closeTo({left: 1500})
+        );
+      $scope.getUserCart();
+    });
+  }
+  $scope.getOrders = function(){
+    service.getOrders().then(function(response){
+      $scope.orders = response;
+    });
+  }
+  $scope.getOrders();
   $scope.getUserCart();
 })

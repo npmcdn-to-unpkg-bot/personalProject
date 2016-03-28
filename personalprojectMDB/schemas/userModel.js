@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var cart     = require('./cartSchema.js');
-//"var orders = require('./order.js');
+// var order = require('./orderSchema.js');
 var Schema = mongoose.Schema;
 
 

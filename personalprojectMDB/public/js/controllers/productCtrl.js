@@ -49,31 +49,31 @@ angular.module('mytrex').controller('productCtrl', function($scope, service, $md
       }
 
     }
-    else if(this.orderButton === "Remove"){
-      if (!quantity) {
-        qty = 0;
-      } else {
-        qty = quantity;
-      }
-      var removeObj = {
-        "item": item,
-        "_id": id,
-        "quantity": qty
-      }
-      service.remove(removeObj).then(function(response){
-        $mdDialog.show(
-          $mdDialog.alert()
-            .clickOutsideToClose(true)
-            .title('Mytrex inc')
-            .textContent("Removed "+qty+" of "+item+" from cart")
-            .ariaLabel('Label')
-            .ok('close')
-            .openFrom(angular.element(document.querySelector('#cartIcon'))).closeTo({left: 1500})
-        )
-      });
-      this.orderButton = "Add to Cart";
-      this.quantity = '';
-    }
+    // else if(this.orderButton === "Remove"){
+    //   if (!quantity) {
+    //     qty = 0;
+    //   } else {
+    //     qty = quantity;
+    //   }
+    //   var removeObj = {
+    //     "item": item,
+    //     "_id": id,
+    //     "quantity": qty
+    //   }
+    //   service.remove(removeObj).then(function(response){
+    //     $mdDialog.show(
+    //       $mdDialog.alert()
+    //         .clickOutsideToClose(true)
+    //         .title('Mytrex inc')
+    //         .textContent("Removed "+qty+" of "+item+" from cart")
+    //         .ariaLabel('Label')
+    //         .ok('close')
+    //         .openFrom(angular.element(document.querySelector('#cartIcon'))).closeTo({left: 1500})
+    //     )
+    //   });
+    //   this.orderButton = "Add to Cart";
+    //   this.quantity = '';
+    // }
   }
 
   $scope.showConfirm = function(ev) {
@@ -92,7 +92,9 @@ angular.module('mytrex').controller('productCtrl', function($scope, service, $md
       $scope.status = 'You decided to keep your debt.';
     });
   };
-
+  $scope.submit = function(){
+    $location.path('/cart')
+  }
   $scope.getProducts();
 });
 function DialogController($scope, $mdDialog, service, $location) {
@@ -113,12 +115,14 @@ function DialogController($scope, $mdDialog, service, $location) {
     }
     else{
       $mdDialog.hide(answer);
-      $location.path('/cart')
+      $location.path('/checkout')
     }
   };
   $scope.editCart = function(){
     $mdDialog.hide();
     $location.path('/cart')
   }
+
+
   $scope.getUserCart();
 }
