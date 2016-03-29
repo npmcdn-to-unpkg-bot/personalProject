@@ -26,4 +26,12 @@ angular.module('mytrex').service('adminService', function($http) {
       return response.data;
     })
   };
+  {
+    this.getOrdersAdmin = function() {
+      return $http({
+        method: 'GET',
+        url: 'http://localhost:4545/api/orders/',
+      }).then(function(response){return response.data})
+    }
+  }
 });

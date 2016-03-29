@@ -17,7 +17,9 @@
     "passport-local": "^1.0.0",
     "path": "^0.12.7",
     "querystring": "^0.2.0",
-    "request": "^2.69.0"
+    "request": "^2.69.0",
+    "short-id": "0.1.0-1",
+    "shortid": "^2.2.4"
   },
   "devDependencies": {},
   "scripts": {

@@ -11,6 +11,7 @@ var jwt = require('jwt-simple');
 var moment = require('moment');
 var mongoose = require('mongoose');
 var request = require('request');
+var shortid = require('shortid');
 
 var MainCtrl = require("./controllers/MainCtrl.js");
 var OrderCtrl = require("./controllers/OrderCtrl.js");
@@ -72,6 +73,7 @@ app.delete('/api/products/:id', ensureAuthenticated, MainCtrl.destroy);
 //order Endpoints
 app.post('/api/order/', ensureAuthenticated, OrderCtrl.create);
 app.get('/api/order/', ensureAuthenticated, OrderCtrl.index);
+app.get('/api/orders/', ensureAuthenticated, OrderCtrl.all);//All orders by Admin
 //Cart Endpoints
 app.post('/api/cart/', ensureAuthenticated, CartCtrl.create);
 app.put('/api/cart/', ensureAuthenticated, CartCtrl.update);
@@ -80,7 +82,7 @@ app.delete('/api/cart/:id', ensureAuthenticated, CartCtrl.destroy);
 // //User Endpoints
 app.get('/api/user', ensureAuthenticated, UserCtrl.index);
 app.post('/api/user', ensureAuthenticated, UserCtrl.create);
-app.get('api/user', ensureAuthenticated, UserCtrl.getme);
+// app.get('api/user', ensureAuthenticated, UserCtrl.getme);
 app.post('/auth/login', UserCtrl.show);
 
 

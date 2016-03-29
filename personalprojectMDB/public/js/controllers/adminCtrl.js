@@ -18,7 +18,17 @@ angular.module('mytrex').controller('adminCtrl', function($scope, adminService, 
     };
     adminService.addUser(user).then(function(response){
       alert("User Added");
+      $scope.user.firstName = "";
+      $scope.user.lastName = "";
+      $scope.user.email = "";
+      $scope.user.password = "";
     })
   };
+  $scope.getOrdersAdmin = function(){
+    adminService.getOrdersAdmin().then(function(response){
+      $scope.orders = response;
+    })
+  }
+  $scope.getOrdersAdmin();
   $scope.getUsers();
 });

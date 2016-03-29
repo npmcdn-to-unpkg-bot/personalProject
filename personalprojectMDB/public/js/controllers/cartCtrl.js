@@ -1,4 +1,4 @@
-angular.module('mytrex').controller('cartCtrl', function($scope, $timeout, $mdSidenav, $location, $auth, $mdDialog, $mdMedia, service){
+angular.module('mytrex').controller('cartCtrl', function($scope, $timeout, $mdSidenav, $location, $auth, $mdDialog, $mdMedia, service, moment){
   $scope.noCart = false;
   $scope.getUserCart = function(){
     service.getUserCart().then(function(response){
@@ -89,6 +89,9 @@ angular.module('mytrex').controller('cartCtrl', function($scope, $timeout, $mdSi
   }
   $scope.keepShopping = function(){
     $location.path('/store')
+  }
+  $scope.goToOrders = function(){
+    $location.path('/orders')
   }
   $scope.submitOrder = function(){
     service.submitOrder().then(function(response){

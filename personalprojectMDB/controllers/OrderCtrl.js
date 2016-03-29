@@ -60,5 +60,15 @@ module.exports = {
         res.status(200).send(myUser.orders);
       }
     })
-  }
+  },
+  all: function(req, res, next) {
+    Order.find({}, function(err, orders) {
+      if (err) {
+        res.status(500).json(err);
+      }
+      else {
+        res.status(200).json(orders);
+      }
+    })
+  },
 };

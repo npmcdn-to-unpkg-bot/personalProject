@@ -1,4 +1,4 @@
-angular.module('mytrex', ['ngMaterial', 'ngResource', 'ngMessages', 'ngAnimate', 'toastr', 'ui.router', 'satellizer'], function() {
+angular.module('mytrex', ['ngMaterial', 'ngResource', 'ngMessages', 'ngAnimate', 'toastr', 'ui.router', 'satellizer', 'angularMoment'], function() {
 
 })
   .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
