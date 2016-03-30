@@ -12,7 +12,7 @@
           <i class="material-icons">menu</i>
         </md-button>
       </md-toolbar>
-      <md-content ng-model="sideNavContent" layout-padding>
+      <md-content ng-model="sideNavContent" layout-padding ng-if="isAuth">
           <md-list ng-cloak>
             <md-list-item ng-click="goTo('store'); close()">
               <p>Store</p>

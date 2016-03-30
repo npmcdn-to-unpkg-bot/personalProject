@@ -1,25 +1,56 @@
-<!-- <md-button id="cartButton" class="md-raised" ng-click="showConfirm($event)" > -->
+
 <i id="cartIcon" class="material-icons" ng-click="showConfirm($event)">shopping_cart</i>
-<!-- </md-button> -->
-<md-content  layout-xs="column" layout="row">
+<md-content  layout-xs="column">
+  <div layout="column" layout-align="none none" layout-gt-sm="row">
+    <md-input-container class="md-block">
+      <label>Search for a product...</label>
+      <input ng-model="searchText" class="searchText" type="text">
+    </md-input-container>
+    <div layout-sm="row">
+      <md-button class="md-raised md-primary"  ng-click="submit()" flex>Review Order</md-button>
+      <md-button class="md-raised cart-preview"  ng-click="showConfirm($event)" flex>Cart Preview</md-button>
+    </div>
+  </div>
+
+  <div layout="column" layout-gt-xs="row" layout-wrap>
+    <div flex="25" flex-gt-sm="25" flex-xs="50" flex-gt-lg="25" ng-repeat="product in products | filter: searchText">
+      <md-card class="productCard">
+        <md-card-title>
+          <md-card-title-text class="center">
+            <span class="md-headline">{{product.ITEMNO}}</span>
+            <span class="md-subhead">{{product.DESC}}</span>
+            <div class="md-media-md card-media" ><img class="card-Image" src="{{product.image}}" alt="product image"></div>
+          </md-card-title-text>
+        </md-card-title>
+
+        <md-card-actions layout="row" layout-align="end center">
+          <md-input-container layout="row" layout-align="end center" class="quantity">
+            <label>Quantity</label>
+            <input ng-model="quantity" type="text">
+          </md-input-container>
+          <md-button class="md-raised md-primary" ng-click="cart(product.ITEMNO, product._id, quantity)">{{orderButton}}</md-button>
+        </md-card-actions>
+      </md-card>
+    </div>
+  </div>
+</md-content>
+
+<!-- <i id="cartIcon" class="material-icons" ng-click="showConfirm($event)">shopping_cart</i>
+<md-content  layout-xs="column">
   <md-input-container class="md-block">
     <label>Search for a product...</label>
     <input ng-model="searchText" class="searchText" type="text">
   </md-input-container>
-  <md-button class="md-raised md-primary" ng-click="submit()">Review Order</md-button>
-  <div flex-xs flex-gt-xs="50" layout="column">
-    <md-card ng-repeat="product in products | filter: searchText">
+  <md-button class="md-raised md-primary" layout="row" ng-click="submit()">Review Order</md-button>
+  <div flex-xs flex-gt-xs="50" layout="column" layout-gt-xs="row" layout-wrap>
+    <md-card ng-repeat="product in products | filter: searchText" flex="50">
       <md-card-title>
         <md-card-title-text class="center">
           <span class="md-headline">{{product.ITEMNO}}</span>
           <span class="md-subhead">{{product.DESC}}</span>
-
-        <!-- <md-card-title-media>  -->
           <div class="md-media-md card-media"><img class="card" src="{{product.image}}" alt="product image"></div>
-        <!-- </md-card-title-media> -->
         </md-card-title-text>
       </md-card-title>
-
       <md-card-actions layout="row" layout-align="end center">
         <md-input-container layout="row" layout-align="end center" class="quantity">
           <label>Quantity</label>
@@ -29,4 +60,4 @@
       </md-card-actions>
     </md-card>
   </div>
-</md-content>
+</md-content> -->

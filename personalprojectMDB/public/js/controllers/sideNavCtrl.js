@@ -1,11 +1,10 @@
-angular.module('mytrex').controller('sideNavCtrl', function($scope, $timeout, $mdSidenav, $log, $location, $auth, $mdDialog, service){
+angular.module('mytrex').controller('sideNavCtrl', function($scope, $timeout, $mdSidenav, $log, $location, $auth, $mdDialog, service, $rootScope){
       $scope.toggleLeft = buildDelayedToggler('left');
       $scope.toggleRight = buildToggler('right');
        $scope.isOpenRight = function(){
          return $mdSidenav('right').isOpen();
        };
-       $scope.isAuth = $auth.isAuthenticated();
-
+       $rootScope.isAuth = false;
 
       function debounce(func, wait, context) {
         var timer;
@@ -57,11 +56,10 @@ angular.module('mytrex').controller('sideNavCtrl', function($scope, $timeout, $m
           }
       }
       $scope.logout = function(){
-
+      $rootScope.isAuth = false;
       if (!$auth.isAuthenticated()) { return; }
       $auth.logout()
         .then(function() {
-          $scope.isAuth = false;
           $mdDialog.show(
             $mdDialog.alert()
               .clickOutsideToClose(true)
@@ -77,12 +75,10 @@ angular.module('mytrex').controller('sideNavCtrl', function($scope, $timeout, $m
         });
     }
     $scope.check = function() {
-        $scope.isAuth = true;
         $auth.login($scope.user)
-          .then(function() {
-            $scope.isAuth = $auth.isAuthenticated();
-            $location.path('/store');
-          })
+          .then(function(){
+             $location.path('/store');
+        })
           .catch(function(error) {
             $mdDialog.show(
               $mdDialog.alert()

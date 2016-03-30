@@ -85,6 +85,7 @@ a.md-button.md-default-theme.md-warn.md-raised, a.md-button.md-warn.md-raised, a
 }
 .mytrexLogo{
   height: 50px;
+  margin: 0 auto;
 }
 .loginCard{
   width: 80%;
@@ -106,6 +107,9 @@ md-content.layout-padding.flex {
 .center{
   text-align: center;
 }
+.cart-preview{
+  display: none;
+}
 @media (min-width: 420px) {
   .loginCard{
     width: 400px;
@@ -116,6 +120,20 @@ md-content.layout-padding.flex {
     width: 400px;
     margin-left: auto;
     margin-right: auto;
+  }
+}
+@media(min-width: 600px){
+  #cartIcon{
+    display: none;
+  }
+  .cart-preview{
+    display: inline-block;
+  }
+  .shopping-cart{
+
+  }
+  .hideMe{
+    display: none;
   }
 }
 @media (min-width: 960px) {
@@ -129,5 +147,17 @@ md-content.layout-padding.flex {
   .toobar-mytrex{
     height: 105px;
   }
-
+  .createUser{
+    margin-left: 10px;
+    width: 60%;
+  }
+  .productCard{
+    max-width: 300px;
+    height: 400px;
+  }
+}
+@media (min-width: 1600px){
+  .createUser{
+    width: 800px;
+  }
 }

@@ -61,11 +61,13 @@ angular.module('mytrex', ['ngMaterial', 'ngResource', 'ngMessages', 'ngAnimate',
               }
               return deferred.promise;
             }
-          function loginRequired($q, $location, $auth) {
+          function loginRequired($q, $location, $auth, $rootScope) {
             var deferred = $q.defer();
             if ($auth.isAuthenticated()) {
+              $rootScope.isAuth = true;
               deferred.resolve();
             } else {
+              $rootScope.isAuth = false;
               $location.path('/');
             }
             return deferred.promise;

@@ -1,15 +1,10 @@
 <nav class="navbar-Mytrex">
-  <md-toolbar class="toobar-mytrex">
+  <md-toolbar class="toobar-mytrex" >
     <div class="md-toolbar-tools">
-      <md-button ng-click="toggleLeft()" class="md-icon-button hamburger-menu" aria-label="Settings">
+      <md-button ng-click="toggleLeft()" class="md-icon-button hamburger-menu" aria-label="Settings" ng-if="isAuth">
         <i class="material-icons">menu</i>
       </md-button>
-      <span flex></span>
-      <h2>
-        <img src="/images/MytrexLogo_Grey.png" alt="mytrex logo" class="mytrexLogo"/>
-      </h2>
-      <span flex></span>
-      <span flex></span>
+      <img src="/images/MytrexLogo_Grey.png" alt="mytrex logo" class="mytrexLogo"/>
     </div>
   </md-toolbar>
 </nav>
