@@ -1,10 +1,11 @@
-angular.module('mytrex').controller('sideNavCtrl', function($scope, $timeout, $mdSidenav, $log, $location, $auth, $mdDialog){
+angular.module('mytrex').controller('sideNavCtrl', function($scope, $timeout, $mdSidenav, $log, $location, $auth, $mdDialog, service){
       $scope.toggleLeft = buildDelayedToggler('left');
       $scope.toggleRight = buildToggler('right');
        $scope.isOpenRight = function(){
          return $mdSidenav('right').isOpen();
        };
-      $scope.currentPath = $location.path();
+       $scope.isAuth = $auth.isAuthenticated();
+
 
       function debounce(func, wait, context) {
         var timer;
@@ -56,9 +57,11 @@ angular.module('mytrex').controller('sideNavCtrl', function($scope, $timeout, $m
           }
       }
       $scope.logout = function(){
+
       if (!$auth.isAuthenticated()) { return; }
       $auth.logout()
         .then(function() {
+          $scope.isAuth = false;
           $mdDialog.show(
             $mdDialog.alert()
               .clickOutsideToClose(true)
@@ -70,8 +73,31 @@ angular.module('mytrex').controller('sideNavCtrl', function($scope, $timeout, $m
               .closeTo({left: 1500})
             );
           $location.path('/');
+          $scope.currentPath = $location.path();
         });
     }
+    $scope.check = function() {
+        $scope.isAuth = true;
+        $auth.login($scope.user)
+          .then(function() {
+            $scope.isAuth = $auth.isAuthenticated();
+            $location.path('/store');
+          })
+          .catch(function(error) {
+            $mdDialog.show(
+              $mdDialog.alert()
+                .clickOutsideToClose(true)
+                .title(error.status)
+                .textContent(error.data.message)
+                .ariaLabel('Label')
+                .ok('close')
+                .openFrom({top: -50, width: 100, height: 80})
+                .closeTo({left: 1500})
+              );
 
-
+          });
+      };
+    //  $scope.showStuff = function(){
+    //      $scope.isAuth = false;
+    //  }
 })

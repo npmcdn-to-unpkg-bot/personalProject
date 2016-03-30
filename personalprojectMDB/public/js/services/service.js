@@ -1,4 +1,5 @@
-angular.module('mytrex').service('service', function($http){
+angular.module('mytrex').service('service', function($http, $auth){
+
   this.getProducts = function() {
     return $http({
       method: 'GET',

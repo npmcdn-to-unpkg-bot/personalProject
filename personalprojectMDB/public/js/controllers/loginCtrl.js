@@ -1,8 +1,10 @@
-angular.module('mytrex').controller('loginCtrl', function($scope, adminService, $mdDialog, $location, $auth){
+angular.module('mytrex').controller('loginCtrl', function($scope, adminService, $mdDialog, $location, $auth, service){
 
   $scope.check = function() {
       $auth.login($scope.user)
         .then(function() {
+          $scope.isAuth = true;
+          service.showStuff = true;
           $location.path('/store');
         })
         .catch(function(error) {
@@ -16,7 +18,7 @@ angular.module('mytrex').controller('loginCtrl', function($scope, adminService, 
               .openFrom({top: -50, width: 100, height: 80})
               .closeTo({left: 1500})
             );
-          // /alert(error.data.message + " " + error.status);
+
         });
     };
 });

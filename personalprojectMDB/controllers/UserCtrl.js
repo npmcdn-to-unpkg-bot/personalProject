@@ -26,9 +26,9 @@ module.exports = {
         user.password = hash;
         user.save(function(err, s) {
           if (err) {
-            return res.status(500).send(err);
+            return res.status(404).send({ message: 'Invalid email and/or password' });
           } else {
-            return err ? res.status(500).send(err) : res.send(s);
+            return err ? res.status(404).json(err) : res.json(s);
           }
         });
       });
@@ -57,8 +57,13 @@ module.exports = {
     });
   },
   getme: function(req, res) {
-  User.findById(req.user, function(err, user) {
+    User.findOne(req.body, function(err, user) {
       res.send(user);
+    });
+  },
+  destroy: function(req, res) {
+    User.findByIdAndRemove(req.body, function(err, user) {
+      res.status(200).json(user)
     });
   }
 }

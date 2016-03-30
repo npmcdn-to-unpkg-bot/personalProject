@@ -50,6 +50,22 @@ a.md-button.md-default-theme.md-warn.md-raised, a.md-button.md-warn.md-raised, a
 .floatRight{
   float: right;
 }
+.rightSide{
+  position: absolute;
+  right: 13px;
+  top: 15px;
+}
+.menuSlider{
+  position: absolute;
+  left: 4px;
+  top: 5px;
+}
+.hidden{
+  display: none;
+}
+.unHide{
+  display: block;
+}
 .blue{
   color:#3F51B5;
 }
@@ -113,4 +129,5 @@ md-content.layout-padding.flex {
   .toobar-mytrex{
     height: 105px;
   }
+
 }

@@ -9,14 +9,18 @@
               <span>Order ID: {{order._id}}</span>
             </h3>
           </div>
+          <i class="material-icons md-36 rightSide" ng-click="order.show = !order.show" ng-show="!order.show" aria-label="Send Email">keyboard_arrow_down</i>
+          <i class="material-icons md-36 rightSide" ng-click="order.show = !order.show" ng-show="order.show" aria-label="Send Email">keyboard_arrow_up</i>
         </md-toolbar>
-        <md-subheader class="md-primary">{{order.createdAt | amCalendar}} <span class="floatRight">Status: {{order.status}}</span></md-subheader>
-        <md-list-item class="md-1-line" ng-repeat="product in order.products">
-          <div class="md-list-item-text">
-            ({{product.quantity}}) {{product.item}}
-          </div>
-        </md-list-item>
-        <md-subheader class="md-primary">Tracking number: {{order.tracking}}</md-subheader>
+        <span ng-show="order.show">
+          <md-subheader class="md-primary">{{order.createdAt | amCalendar}} <span class="floatRight">Status: {{order.status}}</span></md-subheader>
+          <md-list-item class="md-1-line" ng-repeat="product in order.products">
+            <div class="md-list-item-text">
+              ({{product.quantity}}) {{product.item}}
+            </div>
+          </md-list-item>
+          <md-subheader class="md-primary">Tracking number: {{order.tracking}}</md-subheader>
+        </span>
         <md-divider ></md-divider>
       </md-list>
     </md-content>

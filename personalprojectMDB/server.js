@@ -82,8 +82,9 @@ app.delete('/api/cart/:id', ensureAuthenticated, CartCtrl.destroy);
 // //User Endpoints
 app.get('/api/user', ensureAuthenticated, UserCtrl.index);
 app.post('/api/user', ensureAuthenticated, UserCtrl.create);
-// app.get('api/user', ensureAuthenticated, UserCtrl.getme);
+app.post('/api/userId', ensureAuthenticated, UserCtrl.getme);
 app.post('/auth/login', UserCtrl.show);
+app.post('/api/userD', ensureAuthenticated, UserCtrl.destroy);
 
 
 

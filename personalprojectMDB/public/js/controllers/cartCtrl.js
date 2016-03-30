@@ -29,7 +29,6 @@ angular.module('mytrex').controller('cartCtrl', function($scope, $timeout, $mdSi
     })
   }
   $scope.showAdvanced = function(ev, part, id, qty) {
-    // console.log(qty)
      var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
     $mdDialog.show({
       controller: DialogController,

@@ -1,0 +1,39 @@
+<md-dialog aria-label="Mango (Fruit)"  ng-cloak>
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>User Profile</h2>
+        <span flex></span>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <md-content>
+        <md-list flex>
+          <md-list-item class="md-4-line">
+            <md-icon md-svg-icon="{{phone.options.icon}}" ng-if="phone.options.icon" ng-class="{'md-avatar-icon': phone.options.avatarIcon}"></md-icon>
+            <img ng-src="{{user.options.face}}?25" class="md-avatar" alt="{{phone.options.face}}"
+                 ng-if="phone.options.face"/>
+            <div class="md-list-item-text" ng-class="{'md-offset': phone.options.offset }">
+              <h3> {{ thisUser.lastName }}, {{ thisUser.firstName }} </h3>
+              <p>Email:  {{ thisUser.email }} </p>
+              <p>Type: {{ thisUser.type }} </p>
+              <p>UID: {{ thisUser._id }} </p>
+            </div>
+            <md-button class="md-secondary md-icon-button" ng-click="doSecondaryAction($event)" ng-if="phone.options.actionIcon" aria-label="call">
+              <md-icon md-svg-icon="{{phone.options.actionIcon}}"></md-icon>
+            </md-button>
+          </md-list-item>
+        </md-list>
+      </md-content>
+    </md-dialog-content>
+    <md-dialog-actions layout="row" layout-align="space-around center">
+      <md-button class="md-raised md-warn" ng-click="answer('delete')">
+       Delete User
+      </md-button>
+      <md-button class="md-raised md-primary" ng-click="answer('not useful')">
+       Close
+      </md-button>
+      <span flex></span>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

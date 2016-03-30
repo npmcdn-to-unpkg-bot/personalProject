@@ -1,17 +1,18 @@
+
 <div layout="column" style="height:500px;" ng-cloak>
   <section layout="row" flex>
     <md-sidenav
         class="md-sidenav-left"
         md-component-id="left"
-        md-is-locked-open="$mdMedia('gt-md')"
+        md-is-locked-open="$mdMedia('gt-sm')"
         md-disable-backdrop
         md-whiteframe="4">
       <md-toolbar class="md-theme-indigo sideNav-header">
-        <md-button ng-click="close()" class="md-icon-button" aria-label="Settings">
+        <md-button ng-click="close()" class="md-icon-button menuSlider" aria-label="Settings">
           <i class="material-icons">menu</i>
         </md-button>
       </md-toolbar>
-      <md-content ng-model="sideNavContent" ng-hide="false" layout-padding>
+      <md-content ng-model="sideNavContent" layout-padding>
           <md-list ng-cloak>
             <md-list-item ng-click="goTo('store'); close()">
               <p>Store</p>

@@ -1,9 +1,8 @@
 angular.module('mytrex').controller('productCtrl', function($scope, service, $mdDialog, $location, $mdMedia){
-
-  $location.path();
+  $scope.currentPath = $location.path();
   $scope.orderButton = "Add to Cart";
   $scope.filters = true;
-  $scope.isAuth = true;
+
   $scope.getProducts = function(){
     service.getProducts().then(function(response){
       $scope.products = response;
@@ -44,36 +43,10 @@ angular.module('mytrex').controller('productCtrl', function($scope, service, $md
               }).closeTo(angular.element(document.querySelector('#cartIcon')))
           )
         });
-        //this.orderButton = "Remove";
         this.quantity = "";
       }
 
     }
-    // else if(this.orderButton === "Remove"){
-    //   if (!quantity) {
-    //     qty = 0;
-    //   } else {
-    //     qty = quantity;
-    //   }
-    //   var removeObj = {
-    //     "item": item,
-    //     "_id": id,
-    //     "quantity": qty
-    //   }
-    //   service.remove(removeObj).then(function(response){
-    //     $mdDialog.show(
-    //       $mdDialog.alert()
-    //         .clickOutsideToClose(true)
-    //         .title('Mytrex inc')
-    //         .textContent("Removed "+qty+" of "+item+" from cart")
-    //         .ariaLabel('Label')
-    //         .ok('close')
-    //         .openFrom(angular.element(document.querySelector('#cartIcon'))).closeTo({left: 1500})
-    //     )
-    //   });
-    //   this.orderButton = "Add to Cart";
-    //   this.quantity = '';
-    // }
   }
 
   $scope.showConfirm = function(ev) {
