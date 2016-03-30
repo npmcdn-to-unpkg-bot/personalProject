@@ -3,7 +3,7 @@ angular.module('mytrex').controller('productCtrl', function($scope, service, $md
   $location.path();
   $scope.orderButton = "Add to Cart";
   $scope.filters = true;
-
+  $scope.isAuth = true;
   $scope.getProducts = function(){
     service.getProducts().then(function(response){
       $scope.products = response;

@@ -72,6 +72,6 @@ angular.module('mytrex').controller('sideNavCtrl', function($scope, $timeout, $m
           $location.path('/');
         });
     }
-    
+
 
 })
