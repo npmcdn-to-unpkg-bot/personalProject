@@ -1,5 +1,5 @@
-angular.module('mytrex').controller('loginCtrl', function($scope, adminService, $mdDialog, $location, $auth, service, toastr){
-
+angular.module('mytrex').controller('loginCtrl', function($scope, adminService, $mdDialog, $location, $auth, service, toastr, $rootScope){
+  $rootScope.isAuth = false;
   $scope.check = function() {
       $auth.login($scope.user)
         .then(function() {

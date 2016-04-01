@@ -2,7 +2,6 @@ angular.module('mytrex').controller('productCtrl', function($scope, service, $md
   $scope.currentPath = $location.path();
   $scope.orderButton = "Add to Cart";
   $scope.filters = true;
-
   $scope.getProducts = function(){
     service.getProducts().then(function(response){
       $scope.products = response;
