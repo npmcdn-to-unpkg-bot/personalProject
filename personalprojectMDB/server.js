@@ -47,7 +47,7 @@ function ensureAuthenticated(req, res, next) {
 
   var payload = null;
   try {
-    payload = jwt.decode(token, secret, "HS256");
+    payload = jwt.decode(token, secret, false, "HS256");
   }
   catch (err) {
     return res.status(401).send({ message: err.message });
@@ -62,6 +62,33 @@ function ensureAuthenticated(req, res, next) {
   res.setHeader("nt", updateJWT(payload));
   next();
 }
+
+function ensureAuthenticatedAdmin(req, res, next) {
+  if (!req.header('Authorization')) {
+    return res.status(401).send({ message: 'Please make sure your request has an Authorization header' });
+  }
+  var token = req.header('Authorization').split(' ')[1];
+
+  var payload = null;
+  try {
+    payload = jwt.decode(token, secret, false, "HS256");
+  }
+  catch (err) {
+    return res.status(401).send({ message: err.message });
+  }
+
+  if (payload.exp <= moment().unix() || ((moment().format('X') - payload.iat)/60) > 1440) {
+    return res.status(401).send({ message: 'Token has expired' });
+  }
+  if(payload.role !== 'admin'){
+    return res.status(401).send({ message: 'User not authorized'})
+  }
+  req.type = payload.type;
+  req.user = payload.sub;
+  res.setHeader("nt", updateJWT(payload));
+  next();
+}
+
 
 //Product Endpoints
 app.post('/api/products', ensureAuthenticated, MainCtrl.create);
@@ -81,10 +108,11 @@ app.get('/api/cart/', ensureAuthenticated, CartCtrl.index);
 app.delete('/api/cart/:id', ensureAuthenticated, CartCtrl.destroy);
 // //User Endpoints
 app.get('/api/user', ensureAuthenticated, UserCtrl.index);
-app.post('/api/user', ensureAuthenticated, UserCtrl.create);
+app.post('/api/user', ensureAuthenticatedAdmin, UserCtrl.create);
 app.post('/api/userId', ensureAuthenticated, UserCtrl.getme);
 app.post('/auth/login', UserCtrl.show);
-app.post('/api/userD', ensureAuthenticated, UserCtrl.destroy);
+app.post('/api/userD', ensureAuthenticatedAdmin, UserCtrl.destroy);
+app.get('/api/role', ensureAuthenticated, UserCtrl.getRole);
 
 
 

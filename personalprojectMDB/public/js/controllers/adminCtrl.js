@@ -18,7 +18,6 @@ angular.module('mytrex').controller('adminCtrl', function($scope, adminService, 
     };
     adminService.addUser(user).then(function(response){
       if(response.status !== 404){
-        console.log(response);
         toastr.success('User Added');
         $scope.user.firstName = "";
         $scope.user.lastName = "";

@@ -1,5 +1,13 @@
 angular.module('mytrex').service('service', function($http, $auth){
-
+  this.getRole = function(){
+    console.log()
+    return $http({
+      method: 'GET',
+      url: 'http://localhost:4545/api/role'
+    }).then(function(response){
+      return response.data;
+    })
+  }
   this.getProducts = function() {
     return $http({
       method: 'GET',

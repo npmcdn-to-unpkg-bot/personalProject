@@ -66,15 +66,24 @@ angular.module('mytrex', ['ngMaterial', 'ngResource', 'ngMessages', 'ngAnimate',
           function skipIfLoggedIn($q, $auth) {
               var deferred = $q.defer();
               if ($auth.isAuthenticated()) {
+                $
                 deferred.reject();
               } else {
                 deferred.resolve();
               }
               return deferred.promise;
             }
-          function loginRequired($q, $location, $auth, $rootScope) {
+          function loginRequired($q, $location, $auth, $rootScope, service) {
             var deferred = $q.defer();
             if ($auth.isAuthenticated()) {
+              service.getRole().then(function(role){
+                if(role === 'admin'){
+                    $rootScope.userRole = true;
+                 }
+                 else{
+                     $rootScope.userRole = false;
+                 }
+              });
               $rootScope.isAuth = true;
               deferred.resolve();
             } else {

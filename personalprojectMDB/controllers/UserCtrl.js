@@ -65,5 +65,13 @@ module.exports = {
     User.findByIdAndRemove(req.body, function(err, user) {
       res.status(200).json(user)
     });
+  },
+  getRole: function(req, res) {
+    User.findById(req.user, function(err, user) {
+      if(err){
+        res.status(500).send(err);
+      }
+      res.send(user.type);
+    });
   }
 }
