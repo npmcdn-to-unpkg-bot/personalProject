@@ -1,8 +1,19 @@
 angular.module('mytrex', ['ngMaterial', 'ngResource', 'ngMessages', 'ngAnimate', 'toastr', 'ui.router', 'satellizer', 'angularMoment'], function() {
 
 })
-  .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
-
+  .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $mdThemingProvider, toastrConfig) {
+    angular.extend(toastrConfig, {
+     autoDismiss: true,
+     containerId: 'toast-container',
+     maxOpened: 4,
+     newestOnTop: true,
+     positionClass: 'toast-bottom-right',
+     preventDuplicates: false,
+     preventOpenDuplicates: false,
+     target: 'body',
+     timeOut: 1500,
+   }
+  );
       $stateProvider
         .state('login', {
           url: '/',
@@ -12,7 +23,7 @@ angular.module('mytrex', ['ngMaterial', 'ngResource', 'ngMessages', 'ngAnimate',
             skipIfLoggedIn: skipIfLoggedIn
           }
         })
-        .state('home', {
+        .state('store', {
           url: '/store',
           templateUrl: 'views/homeTmpl.html',
           controller: 'productCtrl',

@@ -1,12 +1,20 @@
-<div class="loginCard" layout="column" layout-padding ng-cloak>
-  <md-content class="md-no-momentum">
-    <md-input-container class="md-block">
-      <input ng-model="user.email" type="email" placeholder="Email" ng-required="true">
-    </md-input-container>
-    <md-input-container class="md-icon-float md-block">
-      <label>Password</label>
-      <input ng-model="user.password" type="password" ng-required="true">
-    </md-input-container>
-    <md-button class="md-raised md-primary" ng-click="check(user.email, user.password)" >Submit</md-button>
-  </md-content>
+
+<div class="loginCard" layout="column" ng-cloak>
+  <md-card>
+    <md-card-title>
+      <md-card-title-text>
+        <span class="md-headline">&nbsp;&nbsp;Login to continue</span>
+      </md-card-title-text>
+    </md-card-title>
+    <md-card-content>
+      <md-input-container class="md-block">
+        <input ng-model="user.email" type="email" placeholder="Email" ng-required="true">
+      </md-input-container>
+      <md-input-container class="md-icon-float md-block" my-enter="check(user.email, user.password)">
+        <label>Password</label>
+        <input ng-model="user.password" type="password" ng-required="true">
+      </md-input-container>
+      <md-button class="md-raised md-primary" ng-click="check(user.email, user.password)" >Submit</md-button>
+    </md-card-content>
+  </md-card>
 </div>

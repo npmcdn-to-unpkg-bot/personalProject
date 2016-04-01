@@ -15,9 +15,9 @@
             <h4>{{part}}</h4>
             <h5>Quantity: {{oldQty}}</h5>
             <span hidden="true">{{id}}</span>
-            <md-input-container>
+            <md-input-container my-enter="saveNewQty(newQuantity, id); answer('save');">
                 <label ng-model="qty">New Quantity:</label>
-                <input type="text" ng-model="newQuantity" required>
+                <input type="text" ng-model="newQuantity" required autofocus="true">  
             </md-input-container>
 
       </md-content>

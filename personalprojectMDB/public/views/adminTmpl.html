@@ -48,17 +48,16 @@
         </md-content>
       </md-tab>
       <md-tab label="Orders">
-        <md-content class="orders">
+        <md-content class="orders" layout="column" flex="100" flex-gt-sm="75" flex-xs="100">
             <md-list flex ng-repeat="order in orders">
-            <md-toolbar md-scroll-shrink ng-if="true">
-              <div class="md-toolbar-tools">
-
+            <md-toolbar class="hideOverFlow" >
+              <div class="md-toolbar-tools" ng-click="order.show = !order.show">
                 <h6>
                   <span>OID: {{order._id}}</span><br />
                   <span>UID: {{order.user}}</span>
                 </h6>
-                <i class="material-icons md-36 rightSide" ng-click="order.show = !order.show" ng-show="!order.show" aria-label="Send Email">keyboard_arrow_down</i>
-                <i class="material-icons md-36 rightSide" ng-click="order.show = !order.show" ng-show="order.show" aria-label="Send Email">keyboard_arrow_up</i>
+                <i class="material-icons md-36 rightSide" ng-show="!order.show" aria-label="Send Email">keyboard_arrow_down</i>
+                <i class="material-icons md-36 rightSide" ng-show="order.show" aria-label="Send Email">keyboard_arrow_up</i>
               </div>
             </md-toolbar>
             <span ng-show="order.show">

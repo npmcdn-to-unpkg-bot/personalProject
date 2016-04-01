@@ -1,31 +1,72 @@
-<div ng-cloak >
-  <md-content class="md-padding" layout-xs="column" layout="row">
+<div ng-cloak>
+  <md-content class="md-padding" layout="column">
     <div ng-show="noCart">
-      "You have no items in your cart"
+      <no-cart></no-cart>
     </div>
     <md-button ng-show="!noCart" class="md-raised md-primary" ng-click="submit()">Proceed to Checkout</md-button>
     <md-button ng-show="!noCart" class="md-raised" ng-click="keepShopping()">Keep Shopping</md-button>
-    <div flex-xs flex-gt-xs="50" layout="column">
-      <md-card ng-repeat="item in itemsInCart">
+    <div layout="column" layout-gt-xs="row" layout-wrap>
+      <md-card flex="25" flex-gt-sm="25" flex-xs="50" flex-gt-lg="25" ng-repeat="item in itemsInCart">
         <md-content layout-gt-sm="row" layout-padding>
-        <div>
-          <h4>{{item.item}}</h4>
-          <!-- <md-input-container>
-            <label>Item</label>
-            <input ng-model="item.item" ng-readonly="true">
-          </md-input-container> -->
-          <md-input-container>
-            <label>Quantity</label>
-            <input ng-model="item.quantity" ng-readonly="true">
-          </md-input-container>
-        </div>
-      </md-content>
-        <md-card-actions layout="row" layout-align="center">
-          <md-button class="md-raised md-warn" ng-click="removeItem(item.quantity, item._id, item.item)">Remove</md-button>
-          <md-button class="md-raised" ng-model="saveEdit" ng-click="showAdvanced($event, item.item, item._id, item.quantity)">Edit Qty</md-button>
-        </md-card-actions>
+          <md-card-title >
+            <md-card-title-text >
+              <span class="md-headline greyBackGround">&nbsp;&nbsp;{{item.item}}</span>
+            </md-card-title-text>
+          </md-card-title>
+          <div>
+            <i ng-click="removeItem(item.quantity, item._id, item.item)" class="material-icons closex pointer">clear</i>
+            <md-input-container ng-click="showAdvanced($event, item.item, item._id, item.quantity)" >
+              <label>Quantity</label>
+              <input ng-model="item.quantity" ng-readonly="true" />
+            </md-input-container><br />
+          </div>
+        </md-content>
       </md-card>
     </div>
     <md-button ng-show="!noCart" class="md-raised md-primary" ng-click="submit()">Proceed to Checkout</md-button>
   </md-content>
 </div>
+
+
+<!-- <md-card>
+  <md-card-title>
+    <md-card-title-text>
+      <span class="md-headline">&nbsp;&nbsp;Login to continue</span>
+    </md-card-title-text>
+  </md-card-title>
+  <md-card-content>
+    <md-input-container class="md-block">
+      <input ng-model="user.email" type="email" placeholder="Email" ng-required="true">
+    </md-input-container>
+    <md-input-container class="md-icon-float md-block" my-enter="check(user.email, user.password)">
+      <label>Password</label>
+      <input ng-model="user.password" type="password" ng-required="true">
+    </md-input-container>
+    <md-button class="md-raised md-primary" ng-click="check(user.email, user.password)" >Submit</md-button>
+  </md-card-content>
+</md-card> -->
+
+<!-- <div ng-cloak>
+  <md-content class="md-padding" layout="column">
+    <div ng-show="noCart">
+      <no-cart></no-cart>
+    </div>
+    <md-button ng-show="!noCart" class="md-raised md-primary" ng-click="submit()">Proceed to Checkout</md-button>
+    <md-button ng-show="!noCart" class="md-raised" ng-click="keepShopping()">Keep Shopping</md-button>
+    <div layout="column" layout-gt-xs="row" layout-wrap>
+      <md-card flex="25" flex-gt-sm="25" flex-xs="50" flex-gt-lg="25" ng-repeat="item in itemsInCart">
+        <md-content layout-gt-sm="row" layout-padding>
+          <div>
+            <h4>{{item.item}}</h4>
+            <i ng-click="removeItem(item.quantity, item._id, item.item)" class="material-icons closex pointer">clear</i>
+            <md-input-container ng-click="showAdvanced($event, item.item, item._id, item.quantity)" >
+              <label>Quantity</label>
+              <input ng-model="item.quantity" ng-readonly="true" />
+            </md-input-container><br />
+          </div>
+        </md-content>
+      </md-card>
+    </div>
+    <md-button ng-show="!noCart" class="md-raised md-primary" ng-click="submit()">Proceed to Checkout</md-button>
+  </md-content>
+</div> -->

@@ -1,4 +1,4 @@
-angular.module('mytrex').controller('sideNavCtrl', function($scope, $timeout, $mdSidenav, $log, $location, $auth, $mdDialog, service, $rootScope){
+angular.module('mytrex').controller('sideNavCtrl', function($scope, $timeout, $mdSidenav, $log, $location, $auth, $mdDialog, service, $rootScope, toastr){
       $scope.toggleLeft = buildDelayedToggler('left');
       $scope.toggleRight = buildToggler('right');
        $scope.isOpenRight = function(){
@@ -49,27 +49,16 @@ angular.module('mytrex').controller('sideNavCtrl', function($scope, $timeout, $m
           $log.debug("close RIGHT is done");
         });
       };
+
       $scope.goTo = function(location){
           $location.url('/'+location);
-          if(location === ''){
-              $scope.hamburgerMenu = false;
-          }
       }
       $scope.logout = function(){
       $rootScope.isAuth = false;
       if (!$auth.isAuthenticated()) { return; }
       $auth.logout()
         .then(function() {
-          $mdDialog.show(
-            $mdDialog.alert()
-              .clickOutsideToClose(true)
-              .title('')
-              .textContent('You have been logged out')
-              .ariaLabel('Label')
-              .ok('close')
-              .openFrom({top: -50, width: 100, height: 80})
-              .closeTo({left: 1500})
-            );
+          toastr.success('Logged out', 'Success');
           $location.path('/');
           $scope.currentPath = $location.path();
         });
@@ -93,7 +82,21 @@ angular.module('mytrex').controller('sideNavCtrl', function($scope, $timeout, $m
 
           });
       };
-    //  $scope.showStuff = function(){
-    //      $scope.isAuth = false;
-    //  }
+      $scope.navLinks = [{
+         Title: 'store',
+         LinkText: 'Store',
+       }, {
+         Title: 'orders',
+         LinkText: 'Your Orders'
+       }, {
+         Title: 'cart',
+         LinkText: 'Your Cart'
+       }, {
+         Title: 'admin',
+         LinkText: 'Admin'
+       }, {
+         Title: 'logout',
+         LinkText: 'Logout'
+       }];
+
 })

@@ -1,4 +1,5 @@
-angular.module('mytrex').controller('cartCtrl', function($scope, $timeout, $mdSidenav, $location, $auth, $mdDialog, $mdMedia, service, moment){
+angular.module('mytrex').controller('cartCtrl', function($scope, $timeout, $mdSidenav, $location, $auth, $mdDialog, $mdMedia, service, moment, toastr){
+
   $scope.noCart = false;
   $scope.getUserCart = function(){
     service.getUserCart().then(function(response){
@@ -16,16 +17,17 @@ angular.module('mytrex').controller('cartCtrl', function($scope, $timeout, $mdSi
   $scope.removeItem = function(qty, itemId, itemName){
     service.removeItem(itemId).then(function(response){
       $scope.getUserCart();
-      $mdDialog.show(
-        $mdDialog.alert()
-          .clickOutsideToClose(true)
-          .title('Mytrex inc')
-          .textContent("removed "+qty+" "+itemName + " from cart")
-          .ariaLabel('Label')
-          .ok('close')
-          .openFrom({top: -50, width: 100, height: 80})
-          .closeTo({left: 1500})
-        );
+      toastr.success(itemName +' '+'removed from cart');
+      // $mdDialog.show(
+      //   $mdDialog.alert()
+      //     .clickOutsideToClose(true)
+      //     .title('Mytrex inc')
+      //     .textContent("removed "+qty+" "+itemName + " from cart")
+      //     .ariaLabel('Label')
+      //     .ok('close')
+      //     .openFrom({top: -50, width: 100, height: 80})
+      //     .closeTo({left: 1500})
+      //   );
     })
   }
   $scope.showAdvanced = function(ev, part, id, qty) {

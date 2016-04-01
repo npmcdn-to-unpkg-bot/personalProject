@@ -1,4 +1,4 @@
-angular.module('mytrex').controller('adminCtrl', function($scope, adminService, $mdDialog, $mdMedia){
+angular.module('mytrex').controller('adminCtrl', function($scope, adminService, $mdDialog, $mdMedia, toastr){
   $scope.adminCheck = false;
 
   $scope.getUsers = function(){
@@ -18,16 +18,8 @@ angular.module('mytrex').controller('adminCtrl', function($scope, adminService, 
     };
     adminService.addUser(user).then(function(response){
       if(response.status !== 404){
-        $mdDialog.show(
-          $mdDialog.alert()
-            .clickOutsideToClose(true)
-            .title('Mytrex inc')
-            .textContent("User Added")
-            .ariaLabel('Label')
-            .ok('close')
-            .openFrom({top: -50, width: 100, height: 80})
-            .closeTo({left: 1500})
-          );
+        console.log(response);
+        toastr.success('User Added');
         $scope.user.firstName = "";
         $scope.user.lastName = "";
         $scope.user.email = "";
@@ -35,16 +27,7 @@ angular.module('mytrex').controller('adminCtrl', function($scope, adminService, 
         $scope.getUsers();
       }
       else{
-        $mdDialog.show(
-          $mdDialog.alert()
-            .clickOutsideToClose(true)
-            .title('Mytrex inc')
-            .textContent(response.data.message)
-            .ariaLabel('Label')
-            .ok('close')
-            .openFrom({top: -50, width: 100, height: 80})
-            .closeTo({left: 1500})
-          );
+        toastr.warning(response.data.message);
       }
     });
   };

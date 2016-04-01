@@ -1,15 +1,15 @@
-<md-content class="md-padding" layout-xs="column" layout="row">
-  <md-button class="md-raised" ng-click="keepShopping()">Keep Shopping</md-button>
-    <md-list ng-cloak >
+<md-content class="md-padding" layout="row">
+    <md-list ng-cloak layout="column" flex="100" flex-gt-sm="75" flex-xs="100" flex-gt-lg="50">
+      <md-button  class="md-raised" ng-click="keepShopping()">Keep Shopping</md-button>
       <md-subheader ng-show="!noCart" class="md-no-sticky">Review Order</md-subheader>
-      <md-list-item ng-repeat="item in itemsInCart">
-        <p>({{item.quantity}}) {{ item.item }}</p>
+      <md-list-item ng-repeat="item in itemsInCart" >
+        <p>{{item.quantity}} -- {{ item.item }}</p>
         <!-- <md-checkbox class="md-secondary" ng-model="topping.wanted"></md-checkbox> -->
       </md-list-item>
+      <div ng-show="noCart">
+        <no-cart></no-cart>
+      </div>
+      <md-button id="submitOrder" ng-show="!noCart" class="md-raised" ng-click="submitOrder()">Submit Order</md-button>
+      <md-button class="md-raised md-primary" ng-click="goToOrders()">All Active Orders</md-button>
     </md-list>
-  <md-button ng-show="!noCart" class="md-raised md-primary" ng-click="submitOrder()">Submit Order</md-button>
-  <div ng-show="noCart">
-    There are no items in your cart
-  </div>
-  <md-button class="md-raised md-primary" ng-click="goToOrders()">Orders</md-button>
 </md-content>

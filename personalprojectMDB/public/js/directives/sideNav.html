@@ -9,30 +9,30 @@
         md-whiteframe="4">
       <md-toolbar class="md-theme-indigo sideNav-header">
         <md-button ng-click="close()" class="md-icon-button menuSlider" aria-label="Settings">
-          <i class="material-icons">menu</i>
+          <i class="material-icons pointer">menu</i>
         </md-button>
       </md-toolbar>
       <md-content ng-model="sideNavContent" layout-padding ng-if="isAuth">
-          <md-list ng-cloak>
+          <md-list ng-cloak >
             <md-list-item ng-click="goTo('store'); close()">
               <p>Store</p>
               <i class="material-icons blue">store</i>
             </md-list-item>
             <md-list-item ng-click="goTo('orders'); close()">
-              <p>Your Orders</p>
-              <i class="material-icons blue">receipt</i>
+              <p >Your Orders</p>
+              <i class="material-icons blue ">receipt</i>
             </md-list-item>
             <md-list-item ng-click="goTo('cart'); close()">
-              <p>Your Cart</p>
-              <i class="material-icons blue">shopping_cart</i>
+              <p >Your Cart</p>
+              <i class="material-icons blue ">shopping_cart</i>
             </md-list-item>
             <md-list-item ng-click="goTo('admin'); close()">
-              <p>Admin</p>
+              <p >Admin</p>
               <i class="material-icons blue">supervisor_account</i>
             </md-list-item>
             <md-list-item ng-click="logout(); close();">
               <p>Logout</p>
-              <i class="material-icons blue">exit_to_app</i>
+              <i class="material-icons red">exit_to_app</i>
             </md-list-item>
           </md-list>
       </md-content>
