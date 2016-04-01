@@ -32,7 +32,7 @@ mongoose.connection.once("open", function(){
   console.log("Connected to MongoDB");
 });
 
-var port = 4545;
+var port = 80;
 
 function updateJWT(payload) {
     payload.exp = moment().add(30, 'm').unix();

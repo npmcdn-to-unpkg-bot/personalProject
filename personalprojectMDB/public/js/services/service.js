@@ -3,7 +3,7 @@ angular.module('mytrex').service('service', function($http, $auth){
     console.log()
     return $http({
       method: 'GET',
-      url: 'http://localhost:4545/api/role'
+      url: '/api/role'
     }).then(function(response){
       return response.data;
     })
@@ -11,7 +11,7 @@ angular.module('mytrex').service('service', function($http, $auth){
   this.getProducts = function() {
     return $http({
       method: 'GET',
-      url: 'http://localhost:4545/api/products'
+      url: '/api/products'
     }).then(function(response) {
       return response.data;
     });
@@ -19,7 +19,7 @@ angular.module('mytrex').service('service', function($http, $auth){
   this.getUserCart = function() {
     return $http({
       method: 'GET',
-      url: 'http://localhost:4545/api/cart/'
+      url: '/api/cart/'
     }).then(function(response) {
       if(response.status === 204){
         return response.status;
@@ -30,7 +30,7 @@ angular.module('mytrex').service('service', function($http, $auth){
   this.addCart = function(productObj) {
     return $http({
       method: 'POST',
-      url: 'http://localhost:4545/api/cart/',
+      url: '/api/cart/',
       data: productObj
     }).then(function(response) {
       return response.data;
@@ -39,7 +39,7 @@ angular.module('mytrex').service('service', function($http, $auth){
   this.remove = function(productObj) {
     return $http({
       method: 'PUT',
-      url: 'http://localhost:4545/api/cart/',
+      url: '/api/cart/',
       data: productObj
     }).then(function(response) {
       return response.data;
@@ -48,7 +48,7 @@ angular.module('mytrex').service('service', function($http, $auth){
   this.removeItem = function(productObj){
     return $http({
       method: 'DELETE',
-      url: 'http://localhost:4545/api/cart/'+productObj
+      url: '/api/cart/'+productObj
     }).then(function(response) {
       return response.data;
     });
@@ -56,7 +56,7 @@ angular.module('mytrex').service('service', function($http, $auth){
   this.submitOrder = function(){
     return $http({
       method: 'POST',
-      url: 'http://localhost:4545/api/order'
+      url: '/api/order'
     }).then(function(response){
       return response.data;
     })
@@ -64,7 +64,7 @@ angular.module('mytrex').service('service', function($http, $auth){
   this.getOrders = function(){
     return $http({
       method: 'GET',
-      url: 'http://localhost:4545/api/order'
+      url: '/api/order'
     }).then(function(response){
       return response.data;
     })

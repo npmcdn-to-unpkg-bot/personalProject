@@ -15,4 +15,13 @@ var userSchema = new Schema({
     orders     : [],
   });
 
+  function popu(next){
+        this.populate('cart._id');
+        next();
+  }
+
+  userSchema
+        .pre('find', popu)
+        .pre('findOne', popu);
+
 module.exports = mongoose.model('User', userSchema);

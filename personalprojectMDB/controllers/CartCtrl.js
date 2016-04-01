@@ -24,7 +24,7 @@ module.exports = {
       var qty = req.body.quantity / 1;
       var foundItem = -1;
       myUser.cart.forEach(function(cartItem, index) {
-        if (cartItem._id.toString() === req.body._id.toString()) {
+        if (cartItem._id._id.toString() === req.body._id.toString()) {
           foundItem = index;
         }
       })
@@ -51,7 +51,7 @@ module.exports = {
       var foundItem = -1;
       //console.log(myUser);
       myUser.cart.forEach(function(cartItem, index) {
-        if (cartItem._id.toString() === req.body._id) {
+        if (cartItem._id._id.toString() === req.body._id) {
           foundItem = index;
         }
       })
@@ -92,10 +92,9 @@ module.exports = {
       }
       var myUser = resp;
       var item = req.params.id;
-      //console.log(myUser);
       myUser.cart.forEach(function(cartItem, index) {
-        if (cartItem._id.toString() === item) {
-          myUser.cart.splice(item, 1);
+        if (cartItem._id._id.toString() === item) {
+          myUser.cart.splice(index, 1);
         }
       })
       myUser.save(function(err, result) {

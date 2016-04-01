@@ -49,7 +49,11 @@
       </md-tab>
       <md-tab label="Orders">
         <md-content class="orders" layout="column" flex="100" flex-gt-sm="75" flex-xs="100">
-            <md-list flex ng-repeat="order in orders">
+          <md-input-container md-no-float class="md-block" >
+            <label>Search Orders</label>
+            <input ng-model="orderSearch" type="text" md-autofocus>
+          </md-input-container>
+            <md-list flex ng-repeat="order in orders | filter: orderSearch">
             <md-toolbar class="hideOverFlow" >
               <div class="md-toolbar-tools" ng-click="order.show = !order.show">
                 <h6>

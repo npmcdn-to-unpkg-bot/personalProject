@@ -15,11 +15,15 @@
           </md-card-title>
           <br />
           <div>
-            <i ng-click="removeItem(item.quantity, item._id, item.item)" class="material-icons closex pointer">clear</i>
-            <md-input-container ng-click="showAdvanced($event, item.item, item._id, item.quantity)" >
+            <i ng-click="removeItem(item.quantity, item._id._id, item.item)" class="material-icons closex pointer">clear</i>
+            <md-input-container ng-click="showAdvanced($event, item.item, item._id._id, item.quantity)" >
               <label>Quantity</label>
               <input ng-model="item.quantity" ng-readonly="true" />
-            </md-input-container><br />
+
+            </md-input-container>
+            <div flex="25">
+              <img ng-src="{{item._id.image}}" alt="" />
+            </div>
           </div>
         </md-content>
       </md-card>

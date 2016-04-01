@@ -3,6 +3,8 @@ angular.module('mytrex').controller('cartCtrl', function($scope, $timeout, $mdSi
   $scope.noCart = false;
   $scope.getUserCart = function(){
     service.getUserCart().then(function(response){
+      console.log(response)
+      console.log(response[0]._id.image)
       if(response === 204){
         $scope.itemsInCart = "";
         $scope.noCart = true;
@@ -18,16 +20,6 @@ angular.module('mytrex').controller('cartCtrl', function($scope, $timeout, $mdSi
     service.removeItem(itemId).then(function(response){
       $scope.getUserCart();
       toastr.success(itemName +' '+'removed from cart');
-      // $mdDialog.show(
-      //   $mdDialog.alert()
-      //     .clickOutsideToClose(true)
-      //     .title('Mytrex inc')
-      //     .textContent("removed "+qty+" "+itemName + " from cart")
-      //     .ariaLabel('Label')
-      //     .ok('close')
-      //     .openFrom({top: -50, width: 100, height: 80})
-      //     .closeTo({left: 1500})
-      //   );
     })
   }
   $scope.showAdvanced = function(ev, part, id, qty) {

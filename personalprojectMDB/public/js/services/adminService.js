@@ -3,7 +3,7 @@ angular.module('mytrex').service('adminService', function($http) {
   this.getUsers = function() {
     return $http({
       method: 'GET',
-      url: 'http://localhost:4545/api/user'
+      url: '/api/user'
     }).then(function(response) {
       return response.data;
     })
@@ -11,7 +11,7 @@ angular.module('mytrex').service('adminService', function($http) {
   this.getUser = function(userId){
     return $http({
       method: 'POST',
-      url: 'http://localhost:4545/api/userId/',
+      url: '/api/userId/',
       data: userId
     }).then(function(response){
       return response.data;
@@ -20,7 +20,7 @@ angular.module('mytrex').service('adminService', function($http) {
   this.deleteUser = function(userId){
     return $http({
       method: 'POST',
-      url: 'http://localhost:4545/api/userD',
+      url: '/api/userD',
       data: userId
     }).then(function(response){
       return response.data;
@@ -29,7 +29,7 @@ angular.module('mytrex').service('adminService', function($http) {
   this.addUser = function(user) {
     return $http({
       method: 'POST',
-      url: 'http://localhost:4545/api/user',
+      url: '/api/user',
       data: user
     }).then(function(response) {
       //console.log(response)
@@ -41,7 +41,7 @@ angular.module('mytrex').service('adminService', function($http) {
   this.check = function(email, password) {
     return $http({
       method: 'POST',
-      url: 'http://localhost:4545/api/user/id',
+      url: '/api/user/id',
       data: user
     }).then(function(response) {
       return response.data;
@@ -51,7 +51,7 @@ angular.module('mytrex').service('adminService', function($http) {
     this.getOrdersAdmin = function() {
       return $http({
         method: 'GET',
-        url: 'http://localhost:4545/api/orders/',
+        url: '/api/orders/',
       }).then(function(response){
         return response.data
       })

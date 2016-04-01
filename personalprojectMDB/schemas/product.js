@@ -5,7 +5,7 @@ var productSchema = new Schema({
    ITEMNO : {type: String, unique: true, required: true, index: true},
    DESC : {type: String, required: true},
    type : {type: String, required: true},
-   image: {type: String, required: false, uniqure: false}
+   image: {type: String, required: false, unique: false}
 
 });
 

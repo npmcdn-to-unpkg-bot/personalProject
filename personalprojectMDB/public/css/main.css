@@ -10,6 +10,9 @@ body{
   /*max-width: 1500px;*/
   /*margin: 0 auto;*/
 }
+.cartImage{
+  max-height: 400px;
+}
 #cartIcon{
   position: fixed;
   top: 11px;
