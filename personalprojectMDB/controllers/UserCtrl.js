@@ -62,9 +62,16 @@ module.exports = {
     });
   },
   destroy: function(req, res) {
-    User.findByIdAndRemove(req.body, function(err, user) {
-      res.status(200).json(user)
-    });
+    var currentUser = req.user.toString();
+    var userToDestroy = req.body._id;
+    if(currentUser === userToDestroy){
+      res.status(400).send({message: "Can't delete your self."})
+    }
+    else{
+      User.findByIdAndRemove(req.body, function(err, user) {
+      res.status(200).json({ message: user.firstName + " deleted"})
+      });
+    }
   },
   getRole: function(req, res) {
     User.findById(req.user, function(err, user) {

@@ -1,10 +1,9 @@
 angular.module('mytrex').controller('cartCtrl', function($scope, $timeout, $mdSidenav, $location, $auth, $mdDialog, $mdMedia, service, moment, toastr){
 
   $scope.noCart = false;
-  $scope.getUserCart = function(){
+  $scope.noOrders = true;
+  $scope.getUserCart = function(){``
     service.getUserCart().then(function(response){
-      console.log(response)
-      console.log(response[0]._id.image)
       if(response === 204){
         $scope.itemsInCart = "";
         $scope.noCart = true;
@@ -103,7 +102,13 @@ angular.module('mytrex').controller('cartCtrl', function($scope, $timeout, $mdSi
   }
   $scope.getOrders = function(){
     service.getOrders().then(function(response){
-      $scope.orders = response;
+      if(response.status !== 200){
+        $scope.noOrders = true;
+      }
+      else{
+        $scope.noOrders = false;
+        $scope.orders = response.data;
+      }
     });
   }
   $scope.getOrders();

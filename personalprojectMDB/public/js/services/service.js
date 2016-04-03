@@ -66,7 +66,9 @@ angular.module('mytrex').service('service', function($http, $auth){
       method: 'GET',
       url: '/api/order'
     }).then(function(response){
-      return response.data;
+      return response;
+    }).catch(function(response){
+      return response
     })
   };
 });

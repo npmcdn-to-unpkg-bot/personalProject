@@ -36,6 +36,13 @@ angular.module('mytrex')
       controller: 'orderCtrl'
     };
   })
+  .directive('noOrders', function() {
+    return {
+      restrict: 'E',
+      templateUrl: 'js/directives/noOrders.html',
+      controller: 'orderCtrl'
+    };
+  })
   .directive('navSide', function() {
     return {
       restrict: 'E',

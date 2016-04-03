@@ -23,7 +23,9 @@ angular.module('mytrex').service('adminService', function($http) {
       url: '/api/userD',
       data: userId
     }).then(function(response){
-      return response.data;
+      return response;
+    }).catch(function(response){
+      return response;
     })
   }
   this.addUser = function(user) {

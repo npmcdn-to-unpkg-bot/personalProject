@@ -1,0 +1,26 @@
+<div ng-cloak>
+  <md-content class="md-padding" layout-xs="column" layout="row">
+    <div flex layout="column">
+      <md-card>
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">&nbsp;&nbsp;You have no current orders.</span>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+          <p>
+            To change this, go to the store, add items to your cart and submit that order.
+          </p>
+        </md-card-content>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button class="md-icon-button" aria-label="Store" ng-click="keepShopping()">
+            <i class="material-icons blue pointer">add_shopping_cart</i>
+          </md-button>
+          <md-button class="md-icon-button" aria-label="Orders" ng-click="goToOrders()">
+            <i class="material-icons blue pointer">receipt</i>
+          </md-button>
+        </md-card-actions>
+      </md-card>
+    </div>
+  </md-content>
+</div>

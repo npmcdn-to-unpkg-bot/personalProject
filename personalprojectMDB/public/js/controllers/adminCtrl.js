@@ -72,7 +72,12 @@ angular.module('mytrex').controller('adminCtrl', function($scope, adminService, 
                  "_id" : user._id
                }
                adminService.deleteUser(userId).then(function(response){
-
+                 if(response.status === 400){
+                   toastr.warning(response.data.message);
+                 }
+                 else{
+                   toastr.success(response.data.message);
+                }
                })
              }
              $mdDialog.hide();
