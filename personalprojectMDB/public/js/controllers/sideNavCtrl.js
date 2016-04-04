@@ -5,7 +5,7 @@ angular.module('mytrex').controller('sideNavCtrl', function($scope, $timeout, $m
          return $mdSidenav('right').isOpen();
        };
        $rootScope.isAuth = false;
-       $rootScope.isAuth = true;
+       $rootScope.userRole = true;
 
       function debounce(func, wait, context) {
         var timer;
