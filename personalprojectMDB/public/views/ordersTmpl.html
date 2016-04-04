@@ -4,7 +4,7 @@
       <div ng-show="noOrders">
         <no-orders></no-orders>
       </div>
-      <md-list flex ng-repeat="order in orders" ng-show="!noOrders">
+      <md-list flex ng-repeat="order in orders | orderBy:'-createdAt'" ng-show="!noOrders">
 
         <md-toolbar class="pointer" ng-click="order.show = !order.show">
           <div class="md-toolbar-tools">

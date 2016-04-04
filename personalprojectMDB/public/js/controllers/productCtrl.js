@@ -32,17 +32,6 @@ angular.module('mytrex').controller('productCtrl', function($scope, service, $md
         else{
         service.addCart(productObj).then(function(response){
           toastr.success(productObj.quantity+' '+productObj.item+' added to cart');
-
-          // $mdDialog.show(
-          //   $mdDialog.alert()
-          //     .clickOutsideToClose(true)
-          //     .title('Mytrex inc')
-          //     .textContent('Added ' + quantity + ' ' + item + ' to cart')
-          //     .ariaLabel('Label')
-          //     .ok('close')
-          //     .openFrom({top: -50, width: 30, height: 80
-          //     }).closeTo(angular.element(document.querySelector('#cartIcon')))
-          // )
         });
         this.quantity = "";
       }

@@ -53,7 +53,7 @@
             <label>Search Orders</label>
             <input ng-model="orderSearch" type="text" md-autofocus>
           </md-input-container>
-            <md-list flex ng-repeat="order in orders | filter: orderSearch">
+            <md-list flex ng-repeat="order in orders | filter: orderSearch | orderBy:'-createdAt'">
             <md-toolbar class="hideOverFlow" >
               <div class="md-toolbar-tools" ng-click="order.show = !order.show">
                 <h6>
