@@ -32,6 +32,12 @@ mongoose.connection.once("open", function(){
   console.log("Connected to MongoDB");
 });
 
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "http://192.168.0.127");
+  next();
+});
+
 var port = 80;
 
 function updateJWT(payload) {
