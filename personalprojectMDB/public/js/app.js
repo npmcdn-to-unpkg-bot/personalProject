@@ -2,9 +2,7 @@ angular.module('mytrex', ['ngMaterial', 'ngResource', 'ngMessages', 'ngAnimate',
 
 })
   .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $mdThemingProvider, toastrConfig, $locationProvider) {
-    $locationProvider.html5Mode({
-      enabled: true
-    });
+
     angular.extend(toastrConfig, {
      autoDismiss: true,
      containerId: 'toast-container',
