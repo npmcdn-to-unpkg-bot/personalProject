@@ -1,7 +1,7 @@
 <div ng-cloak>
   <md-content class="md-padding" layout="column">
     <div ng-show="noCart">
-      <no-cart></no-cart>
+      <no-cart ng-cloak></no-cart>
     </div>
     <md-button ng-show="!noCart" class="md-raised md-primary" ng-click="submit()">Proceed to Checkout</md-button>
     <md-button ng-show="!noCart" class="md-raised" ng-click="keepShopping()">Keep Shopping</md-button>
