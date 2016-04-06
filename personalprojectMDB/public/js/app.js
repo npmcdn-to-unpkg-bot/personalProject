@@ -15,6 +15,10 @@ angular.module('mytrex', ['ngMaterial', 'ngResource', 'ngMessages', 'ngAnimate',
      timeOut: 1500,
    }
   );
+  $locationProvider.html5Mode({
+    enabled: true
+  });
+
       $stateProvider
         .state('login', {
           url: '/',

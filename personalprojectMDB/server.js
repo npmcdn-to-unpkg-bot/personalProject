@@ -120,7 +120,9 @@ app.post('/auth/login', UserCtrl.show);
 app.post('/api/userD', ensureAuthenticatedAdmin, UserCtrl.destroy);
 app.get('/api/role', ensureAuthenticated, UserCtrl.getRole);
 
-
+app.all('/*', function(req, res, next) {
+   res.sendFile('index.html', { root: __dirname + '/public' });
+});
 
 
 app.listen(port, function() {
