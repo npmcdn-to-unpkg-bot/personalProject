@@ -4,7 +4,7 @@ angular.module('mytrex')
       restrict: 'E',
       templateUrl: 'js/directives/header.html',
       link: function(scope, element, attr) {
-        scope.name = 'Zach';
+      //  scope.name = 'Zach';
         // scope.alertMe = function(){
         //   alert("me")
         // }
@@ -43,6 +43,7 @@ angular.module('mytrex')
       controller: 'orderCtrl'
     };
   })
+
   .directive('navSide', function() {
     return {
       restrict: 'E',

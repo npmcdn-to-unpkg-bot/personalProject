@@ -83,21 +83,4 @@ angular.module('mytrex').controller('sideNavCtrl', function($scope, $timeout, $m
 
           });
       };
-      $scope.navLinks = [{
-         Title: 'store',
-         LinkText: 'Store',
-       }, {
-         Title: 'orders',
-         LinkText: 'Your Orders'
-       }, {
-         Title: 'cart',
-         LinkText: 'Your Cart'
-       }, {
-         Title: 'admin',
-         LinkText: 'Admin'
-       }, {
-         Title: 'logout',
-         LinkText: 'Logout'
-       }];
-
 })
