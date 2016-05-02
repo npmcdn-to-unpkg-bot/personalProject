@@ -13,6 +13,72 @@ body{
 .cartImage{
   max-height: 400px;
 }
+.leftIndent{
+  padding-left: 20px;
+  color: #3F51B5;
+}
+.subHead{
+  width: 100%;
+  text-align: center;
+}
+.templateSelect{
+  width: 200px;
+  display: inline-block;
+}
+.templateSelectButton{
+  width: 200px;
+  display: inline-block;
+}
+.inputCard{
+  width: 100%;
+  margin: 0 auto;
+  border: #BDBDBD solid thin;
+  border-radius: 3px;
+  padding: 5px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+.cardTitle{
+  margin-bottom: 20px;
+  width: 100%;
+  background-color: #3F51B5;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+  color:lightGrey;
+  font-size: 20px;
+  padding: 5px;
+}
+.inputRow > div{
+  display: inline-block;
+}
+.inputRow{
+  width: 100%;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+.label{
+  width: 190px;
+  font-size: 15px;
+}
+.inputRow > input{
+  float: right;
+  width: 50px;
+}
+.inputBox{
+  -webkit-transition: all 0.10s ease-in-out;
+  -moz-transition: all 0.10s ease-in-out;
+  -ms-transition: all 0.10s ease-in-out;
+  -o-transition: all 0.10s ease-in-out;
+  outline: none;
+  border: none;
+  border-bottom: 2px solid #DDDDDD;
+}
+.inputBox:focus{
+  border-bottom: #FF4081 solid 2px;
+}
+.checkboxRow > md-checkbox{
+  width: 100%
+}
 #cartIcon{
   position: fixed;
   top: 11px;

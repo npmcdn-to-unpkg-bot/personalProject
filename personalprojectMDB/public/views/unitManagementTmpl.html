@@ -1,0 +1,220 @@
+<div ng-cloak>
+
+    <div class="subHead">
+        <md-select placeholder="Choose a template" ng-model="template" md-on-open="loadTemplates()" class="templateSelect">
+            <md-option ng-value="template" ng-repeat="template in templates">{{template.name}}</md-option>
+        </md-select>
+        <md-button class="md-raised md-primary templateSelectButton" ng-click="showRaps = !showRaps"><span ng-if="showRaps">Load New Template</span><span ng-if="!showRaps">Load Template</span></md-button>
+        <md-input-container ng-if="!showRaps">
+            <label>Search by unit ID</label>
+            <input ng-model="unit.ID" ng-keydown="searchID(unit.ID)">
+        </md-input-container>
+        <ul>
+          <li ng-repeat="result in results">Serial number: {{result.serial}} | Owner: {{result.owner}}</li>
+        </ul>
+        <md-button class="md-raised md-primary templateSelectButton" ng-if="showRaps" ng-click="saveTemplate()">Save</md-button>
+    </div>
+    <md-content class="adminTmple" ng-if="showRaps">
+        <md-tabs md-dynamic-height md-border-bottom>
+            <md-tab label="General">
+                <md-content class="">
+                    <div class="inputCard">
+                        <div class="cardTitle">
+                            Audible Prompts
+                        </div>
+                        <div class="inputRow">
+                            <div class="label">
+                                Activation Beep Counts
+                            </div><input type="text" class="inputBox"/>
+                        </div>
+                        <div class="inputRow">
+                            <div class="label">
+                                Voice Prompts Enabled
+                            </div>
+                            <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="data.LbMonitr" class="md-primary" style="float: right; margin-right: 8px;"></md-checkbox>
+                        </div>
+                        <div class="inputRow">
+                            <div class="label">
+                                "Calling For Help" Count
+                            </div><input type="text" class="inputBox"/>
+                        </div>
+                        <div class="inputRow">
+                            <div class="label">"Calling For Help" Interval</div><input type="text" class="inputBox"/>
+                        </div>
+                    </div>
+                </md-content>
+            </md-tab>
+            <md-tab label="Call Setup">
+                <md-content class="createUser">
+                    <div class="inputCard">
+                        <div class="inputRow">
+                            <div class="label" style="width: 50%;">
+                                Primary Telephone Number Base
+                            </div><input type="text" class="inputBox" style="width: 50%;"/>
+                        </div>
+                        <div class="inputRow">
+                            <div class="label" style="width: 50%;">
+                                Secondary Telephone Number Base
+                            </div><input type="text" class="inputBox" style="width: 50%;"/>
+                        </div>
+                        <div class="inputRow">
+                            <div class="label" style="width: 50%;">
+                                Direct Voice Telephone Number
+                            </div><input type="text" class="inputBox" style="width: 50%;"/>
+                        </div>
+                        <div class="inputRow">
+                            <div class="label">
+                                Block Retry Interval (Min)
+                            </div><input type="text" class="inputBox"/>
+                        </div>
+                        <div class="inputRow">
+                            <div class="label">
+                                Calls Per Block
+                            </div><input type="text" class="inputBox"/>
+                        </div>
+                        <div class="inputRow">
+                            <div class="label">
+                                Maximum Call Block
+                            </div><input type="text" class="inputBox"/>
+                        </div>
+                    </div>
+                </md-content>
+            </md-tab>
+            <md-tab label="Alarm Processing">
+                <div class="inputCard">
+                    <div class="inputRow">
+                        <div class="label">
+                            AutoVoice Test Interval (Days)
+                        </div><input type="text" class="inputBox"/>
+                    </div>
+                    <div class="inputRow">
+                        <div class="label">
+                            AutoDial Ping (Days)
+                        </div><input type="text" class="inputBox"/>
+                    </div>
+                    <div class="inputRow">
+                        <div class="label">
+                            Activation Delay (Mins)
+                        </div><input type="text" class="inputBox"/>
+                    </div>
+                    <div class="inputRow">
+                        <div class="label">
+                            Report Params Delay (Mins)
+                        </div><input type="text" class="inputBox"/>
+                    </div>
+                    <div class="inputRow">
+                        <div class="label">
+                            Auto Report Back Delay (Mins)
+                        </div><input type="text" class="inputBox"/>
+                    </div>
+                </div>
+                <div class="inputCard">
+                    <div class="cardTitle">
+                        Supervision
+                    </div>
+                    <div class="inputRow">
+                        <div class="label">
+                            Supervised Report Timeout (x10 Min)
+                        </div><input type="text" class="inputBox"/>
+                    </div>
+                    <div class="inputRow">
+                        <div class="label">
+                            Supervised PHB's
+                        </div><input type="text" class="inputBox"/>
+                    </div>
+                    <div class="inputRow">
+                        <div class="label">
+                            Central Station Determinate Supervision
+                        </div><input type="text" class="inputBox"/>
+                    </div>
+                    <div class="inputRow">
+                        <div class="label">Supervised PHB Report timeout (x10 min)</div><input type="text" class="inputBox"/>
+                    </div>
+                </div>
+                <div class="inputCard">
+                    <div class="cardTitle">
+                        PHB Alarms: DVS Enable
+                    </div>
+                    <div class="checkboxRow">
+                        <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="data.panic" class="md-primary">Panic</md-checkbox>
+                        <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="data.LowBat" class="md-primary">Low Batt</md-checkbox>
+                        <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="data.LbMonitr" class="md-primary">LB Monitor</md-checkbox>
+                    </div>
+                </div>
+                <div class="inputCard">
+                    <div class="cardTitle">
+                        Supervised TXM: DVS Enabled
+                    </div>
+                    <div class="checkboxRow">
+                        <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="data.panic" class="md-primary">Panic</md-checkbox>
+                        <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="data.LowBat" class="md-primary">Low Batt</md-checkbox>
+                        <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="data.LbMonitr" class="md-primary">SuperFail</md-checkbox>
+                    </div>
+                </div>
+                <div class="inputCard">
+                    <div class="cardTitle">
+                        Smoke: DVS Enable
+                    </div>
+                    <div class="checkboxRow">
+                        <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="data.panic" class="md-primary">Panic</md-checkbox>
+                        <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="data.LowBat" class="md-primary">Low Batt</md-checkbox>
+                        <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="data.LbMonitr" class="md-primary">SuperFail</md-checkbox>
+                    </div>
+                </div>
+                <div class="inputCard">
+                    <div class="cardTitle">
+                        CO: DVS Enable
+                    </div>
+                    <div class="checkboxRow">
+                        <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="data.panic" class="md-primary">Panic</md-checkbox>
+                        <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="data.LowBat" class="md-primary">Low Batt</md-checkbox>
+                        <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="data.LbMonitr" class="md-primary">SuperFail</md-checkbox>
+                    </div>
+                </div>
+                <div class="inputCard">
+                    <div class="cardTitle">
+                        CO: DVS Enable
+                    </div>
+                    <div class="checkboxRow">
+                        <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="data.panic" class="md-primary">Panic</md-checkbox>
+                        <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="data.LowBat" class="md-primary">Low Batt</md-checkbox>
+                        <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="data.LbMonitr" class="md-primary">SuperFail</md-checkbox>
+                    </div>
+                </div>
+                <div class="inputCard">
+                    <div class="cardTitle">
+                        Med Dispenser: DVS Enable
+                    </div>
+                    <div class="checkboxRow">
+                        <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="data.panic" class="md-primary">Panic</md-checkbox>
+                        <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="data.LowBat" class="md-primary">Low Batt</md-checkbox>
+                        <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="data.LbMonitr" class="md-primary">SuperFail</md-checkbox>
+                    </div>
+                </div>
+                <div class="inputCard">
+                    <div class="cardTitle">
+                        Base Alarms: DVS Enable
+                    </div>
+                    <div class="checkboxRow">
+                        <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="data.panic" class="md-primary">Front Panel HELP</md-checkbox>
+                        <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="data.LowBat" class="md-primary">Reverse Phone</md-checkbox>
+                        <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="data.LbMonitr" class="md-primary">AC Fail</md-checkbox>
+                        <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="data.panic" class="md-primary">Bad Charging Voltage</md-checkbox>
+                        <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="data.LowBat" class="md-primary">AC Restore</md-checkbox>
+                        <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="data.LbMonitr" class="md-primary">Good Charging Voltage</md-checkbox>
+                        <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="data.panic" class="md-primary">Low System Battery</md-checkbox>
+                        <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="data.LowBat" class="md-primary">External Flash Bad</md-checkbox>
+                        <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="data.LbMonitr" class="md-primary">System Shutdown</md-checkbox>
+                        <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="data.panic" class="md-primary">Auto Report Back</md-checkbox>
+                        <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="data.LowBat" class="md-primary">Battery Test Failure</md-checkbox>
+                        <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="data.LbMonitr" class="md-primary">Contact ID Voice</md-checkbox>
+                        <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="data.panic" class="md-primary">Dial Test</md-checkbox>
+                        <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="data.LowBat" class="md-primary">Activation Test</md-checkbox>
+                        <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="data.LbMonitr" class="md-primary">Voice Test</md-checkbox>
+                        <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="data.LbMonitr" class="md-primary">Report Params</md-checkbox>
+                    </div>
+                </div>
+            </md-tab>
+        </md-tabs>
+    </md-content>
+</div>

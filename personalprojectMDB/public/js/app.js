@@ -12,7 +12,7 @@ angular.module('mytrex', ['ngMaterial', 'ngResource', 'ngMessages', 'ngAnimate',
      preventDuplicates: false,
      preventOpenDuplicates: false,
      target: 'body',
-     timeOut: 1500,
+     timeOut: 2000,
    }
   );
   $locationProvider.html5Mode({
@@ -62,6 +62,14 @@ angular.module('mytrex', ['ngMaterial', 'ngResource', 'ngMessages', 'ngAnimate',
           url: '/checkout',
           templateUrl: 'views/submitOrder.html',
           controller: 'cartCtrl',
+          resolve: {
+           loginRequired: loginRequired
+         }
+        })
+        .state('unitManagement', {
+          url: '/unitManagement',
+          templateUrl: 'views/unitManagementTmpl.html',
+          controller: 'unitManagementCtrl',
           resolve: {
            loginRequired: loginRequired
          }

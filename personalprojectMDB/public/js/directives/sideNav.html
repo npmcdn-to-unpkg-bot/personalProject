@@ -14,21 +14,40 @@
       </md-toolbar>
       <md-content ng-model="sideNavContent" layout-padding ng-if="isAuth">
           <md-list ng-cloak >
-            <md-list-item ng-click="goTo('store'); close()">
-              <p>Store</p>
-              <i class="material-icons blue">store</i>
+            <md-list-item ng-click="showStore = !showStore">
+              <p>Order Units</p>
+              <i ng-if="!showStore" class="material-icons blue" >keyboard_arrow_down</i>
+              <i class="material-icons blue" ng-if="showStore">keyboard_arrow_up</i>
             </md-list-item>
-            <md-list-item ng-click="goTo('orders'); close()">
-              <p >Your Orders</p>
-              <i class="material-icons blue ">receipt</i>
+            <span ng-if="showStore">
+                <md-list-item ng-click="goTo('store'); close()">
+                  <p class="leftIndent">Store</p>
+                  <i class="material-icons blue">store</i>
+                </md-list-item>
+                <md-list-item ng-click="goTo('orders'); close()">
+                  <p class="leftIndent">Your Orders</p>
+                  <i class="material-icons blue ">receipt</i>
+                </md-list-item>
+                <md-list-item ng-click="goTo('cart'); close()">
+                  <p class="leftIndent">Your Cart</p>
+                  <i class="material-icons blue ">shopping_cart</i>
+                </md-list-item>
+            </span>
+            <md-list-item ng-click="goTo('unitManagement'); close()" ng-if="userRole">
+              <p >Unit Management</p>
+              <i class="material-icons blue">settings_system_daydream</i>
             </md-list-item>
-            <md-list-item ng-click="goTo('cart'); close()">
-              <p >Your Cart</p>
-              <i class="material-icons blue ">shopping_cart</i>
+            <md-list-item ng-click="goTo('subscriber'); close()" ng-if="userRole">
+              <p >Subscriber Managment</p>
+              <i class="material-icons blue">supervisor_account</i>
+            </md-list-item>
+            <md-list-item ng-click="goTo('reports'); close()" ng-if="userRole">
+              <p >Reports & Statistics</p>
+              <i class="material-icons blue">show_chart</i>
             </md-list-item>
             <md-list-item ng-click="goTo('admin'); close()" ng-if="userRole">
               <p >Admin</p>
-              <i class="material-icons blue">supervisor_account</i>
+              <i class="material-icons blue">perm_identity</i>
             </md-list-item>
             <md-list-item ng-click="logout(); close();">
               <p>Logout</p>
