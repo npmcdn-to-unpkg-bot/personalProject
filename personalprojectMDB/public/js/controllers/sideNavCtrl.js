@@ -1,4 +1,5 @@
 angular.module('mytrex').controller('sideNavCtrl', function($scope, $timeout, $mdSidenav, $log, $location, $auth, $mdDialog, service, $rootScope, toastr){
+    $scope.showStore = false;
       $scope.toggleLeft = buildDelayedToggler('left');
       $scope.toggleRight = buildToggler('right');
        $scope.isOpenRight = function(){

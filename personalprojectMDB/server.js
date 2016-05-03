@@ -38,7 +38,7 @@ app.use(function(req, res, next) {
   next();
 });
 
-var port = 80;
+var port = 4000;
 
 function updateJWT(payload) {
     payload.exp = moment().add(30, 'm').unix();
