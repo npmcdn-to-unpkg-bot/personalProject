@@ -246,6 +246,16 @@ md-content.layout-padding.flex {
     margin-left: auto;
     margin-right: auto;
   }
+  /*.cardContent{
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }*/
+
+  .checkboxRow > md-checkbox{
+    display: inline-block;
+    width: 30%;
+  }
 }
 @media(min-width: 600px){
   #cartIcon{
@@ -261,6 +271,15 @@ md-content.layout-padding.flex {
     display: none;
   }
 
+  .cardContent{
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .inputCard{
+    width: 400px;
+  }
 }
 @media (min-width: 960px) {
   .sideNav-header, .hamburger-menu, .three-dots{
@@ -281,10 +300,10 @@ md-content.layout-padding.flex {
     max-width: 300px;
     height: 400px;
   }
-  [flex].productCard{
+  /*[flex].productCard{
     -webkit-flex: 1 1 300px;
   flex: 1 1 300px;
-  }
+  }*/
   .loginCard{
     position: fixed;
     width: 300px;
