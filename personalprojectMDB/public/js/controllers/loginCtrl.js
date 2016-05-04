@@ -6,7 +6,7 @@ angular.module('mytrex').controller('loginCtrl', function($scope, adminService, 
           $scope.isAuth = true;
           service.showStuff = true;
           toastr.success('Logged In', 'Success');
-          $location.path('/store');
+          $location.path('/unitManagement');
         })
         .catch(function(error) {
           toastr.error(error.statusText, 'Error');

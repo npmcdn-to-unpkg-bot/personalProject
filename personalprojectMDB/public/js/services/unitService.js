@@ -2,7 +2,7 @@ angular.module('mytrex').service('unitService', function($http, $auth){
 
   var Templates = [
       {
-      "Name": "Template1",
+      "Name": "VRI-Part01- Alias - Avaunt Guard Line B",
       "General":
         {
           "BeepCounts": "10",
@@ -12,7 +12,7 @@ angular.module('mytrex').service('unitService', function($http, $auth){
         }
       },
       {
-      "Name": "Template2",
+      "Name": "Template2 - Rescue Alert Internet",
       "General":
         {
           "BeepCounts": "20",

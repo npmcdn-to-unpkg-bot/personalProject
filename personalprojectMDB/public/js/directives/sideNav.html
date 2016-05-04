@@ -14,12 +14,12 @@
       </md-toolbar>
       <md-content ng-model="sideNavContent" layout-padding ng-if="isAuth">
           <md-list ng-cloak >
-            <md-list-item ng-click="showStore = !showStore">
+            <!-- <md-list-item ng-click="showStore = !showStore">
               <p>Order Units</p>
               <i ng-if="!showStore" class="material-icons blue" >keyboard_arrow_down</i>
               <i class="material-icons blue" ng-if="showStore">keyboard_arrow_up</i>
-            </md-list-item>
-            <span ng-if="showStore">
+            </md-list-item> -->
+            <!-- <span ng-if="showStore">
                 <md-list-item ng-click="goTo('store'); close()">
                   <p class="leftIndent">Store</p>
                   <i class="material-icons blue">store</i>
@@ -32,7 +32,7 @@
                   <p class="leftIndent">Your Cart</p>
                   <i class="material-icons blue ">shopping_cart</i>
                 </md-list-item>
-            </span>
+            </span> -->
             <md-list-item ng-click="goTo('unitManagement'); close()" ng-if="userRole">
               <p >Unit Management</p>
               <i class="material-icons blue">settings_system_daydream</i>
